@@ -33,7 +33,7 @@
         </activity>
         <activity
             android:name=".LvlSelectActivity"
-            android:label="@string/title_activity_lvl_select"
+            android:label="Level Select"
             android:parentActivityName=".MenuActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
