@@ -9,8 +9,9 @@
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:id="@+id/gridLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/levelSelectMenu">
 
         <ImageButton
             android:layout_width="100dp"
@@ -22,16 +23,19 @@
             android:maxWidth="100dp"
             android:maxHeight="100dp"
             android:clickable="true"
-            android:focusableInTouchMode="false" />
+            android:focusableInTouchMode="false"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Score:"
-            android:id="@+id/level1Score"
-            android:layout_row="1"
-            android:layout_column="0" />
+            android:text="0"
+            android:id="@+id/textView4"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_gravity="center"
+            />
 
         <ImageButton
             android:layout_width="100dp"
@@ -44,14 +48,17 @@
             android:maxHeight="100dp"
             android:clickable="true" />
 
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Score"
+            android:text=""
             android:id="@+id/level2Score"
-            android:layout_row="1"
-            android:layout_column="1" />
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_gravity="center" />
 
         <ImageButton
             android:layout_width="100dp"
@@ -68,10 +75,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Score"
+            android:text=""
             android:id="@+id/level3Score"
-            android:layout_row="1"
-            android:layout_column="2" />
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_gravity="center" />
 
         <ImageButton
             android:layout_width="100dp"
@@ -88,10 +96,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Score"
+            android:text=""
             android:id="@+id/level4Score"
-            android:layout_row="3"
-            android:layout_column="0" />
+            android:layout_row="2"
+            android:layout_column="0"
+            android:layout_gravity="center" />
 
         <ImageButton
             android:layout_width="100dp"
@@ -108,10 +117,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Score"
+            android:text=""
             android:id="@+id/level5Score"
-            android:layout_row="3"
-            android:layout_column="1" />
+            android:layout_row="2"
+            android:layout_column="1"
+            android:layout_gravity="center" />
 
         <ImageButton
             android:layout_width="100dp"
@@ -128,10 +138,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Score"
+            android:text=""
             android:id="@+id/level6Score"
-            android:layout_row="3"
-            android:layout_column="2" />
+            android:layout_row="2"
+            android:layout_column="2"
+            android:layout_gravity="center" />
+
+
 
     </GridLayout>
 
