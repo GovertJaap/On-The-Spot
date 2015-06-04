@@ -44,6 +44,11 @@ public class MainActivity extends ActionBarActivity {
     Random rand;
     Paint paint;
 
+    //disables the default android backbutton
+    @Override
+    public void onBackPressed() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Initialization of all variables used by this activity.

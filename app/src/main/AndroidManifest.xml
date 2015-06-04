@@ -33,11 +33,8 @@
         </activity>
         <activity
             android:name=".LvlSelectActivity"
-            android:label="Level Select"
-            android:parentActivityName=".MenuActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.android.onthespot.MenuActivity" />
+            android:parentActivityName=".MenuActivity"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

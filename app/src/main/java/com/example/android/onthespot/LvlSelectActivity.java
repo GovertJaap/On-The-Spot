@@ -13,6 +13,11 @@ import com.example.android.onthespot.R;
 
 public class LvlSelectActivity extends ActionBarActivity {
 
+    //disables the default android backbutton
+    @Override
+    public void onBackPressed() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +29,10 @@ public class LvlSelectActivity extends ActionBarActivity {
         setupLevel5Button();
         setupLevel6Button();
 
+
+
     }
+
 
     private void setupLevel1Button() {
         ImageButton levelButton = (ImageButton) findViewById(R.id.level1Button);

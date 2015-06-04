@@ -13,6 +13,10 @@ import android.widget.Toast;
 import com.example.android.onthespot.R;
 
 public class MenuActivity extends ActionBarActivity {
+    //disables the default android backbutton
+    @Override
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

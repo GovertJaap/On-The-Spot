@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class GameOver extends ActionBarActivity {
+    //disables the default android backbutton
+    @Override
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
