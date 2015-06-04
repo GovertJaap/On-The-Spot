@@ -20,7 +20,8 @@
       "circleSpawnChance": 70,
       "rectangleSpawnChance": 20,
       "hexagonSpawnChance": 10,
-      "highscore": 0
+      "highscore": 0,
+      "locked":"false"
     },
     {
       "level": 2,
@@ -42,7 +43,8 @@
       "circleSpawnChance": 60,
       "rectangleSpawnChance": 25,
       "hexagonSpawnChance": 15,
-      "highscore": 0
+      "highscore": 0,
+      "locked":"true"
     }
   ]
 }

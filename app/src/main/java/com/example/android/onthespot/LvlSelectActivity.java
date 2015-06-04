@@ -26,7 +26,6 @@ public class LvlSelectActivity extends ActionBarActivity {
 
     }
 
-
     private void setupLevel1Button() {
         ImageButton levelButton = (ImageButton) findViewById(R.id.level1Button);
         levelButton.setOnClickListener(new View.OnClickListener() {
@@ -41,58 +40,68 @@ public class LvlSelectActivity extends ActionBarActivity {
 
     private void setupLevel2Button() {
         ImageButton levelButton = (ImageButton) findViewById(R.id.level2Button);
-        levelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent activity = new Intent(LvlSelectActivity.this, MainActivity.class);
-                activity.putExtra("level", 1);
-                startActivity(activity);
-            }
-        });
+        if(levelButton.isClickable() == true) {
+            levelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent activity = new Intent(LvlSelectActivity.this, MainActivity.class);
+                    activity.putExtra("level", 1);
+                    startActivity(activity);
+                }
+            });
+        }
     }
     private void setupLevel3Button() {
         ImageButton levelButton = (ImageButton) findViewById(R.id.level3Button);
-        levelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent activity = new Intent(LvlSelectActivity.this, MainActivity.class);
-                activity.putExtra("level", 2);
-                startActivity(activity);
-            }
-        });
+        if(levelButton.isClickable() == true) {
+            levelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent activity = new Intent(LvlSelectActivity.this, MainActivity.class);
+                    activity.putExtra("level", 2);
+                    startActivity(activity);
+                }
+            });
+        }
     }
     private void setupLevel4Button() {
         ImageButton levelButton = (ImageButton) findViewById(R.id.level4Button);
-        levelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent activity = new Intent(LvlSelectActivity.this, MainActivity.class);
-                activity.putExtra("level", 3);
-                startActivity(activity);
-            }
-        });
+        if(levelButton.isClickable() == true) {
+            levelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent activity = new Intent(LvlSelectActivity.this, MainActivity.class);
+                    activity.putExtra("level", 3);
+                    startActivity(activity);
+                }
+            });
+        }
     }
     private void setupLevel5Button() {
         ImageButton levelButton = (ImageButton) findViewById(R.id.level5Button);
-        levelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent activity = new Intent(LvlSelectActivity.this, MainActivity.class);
-                activity.putExtra("level", 4);
-                startActivity(activity);
-            }
-        });
+        if(levelButton.isClickable() == true) {
+            levelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent activity = new Intent(LvlSelectActivity.this, MainActivity.class);
+                    activity.putExtra("level", 4);
+                    startActivity(activity);
+                }
+            });
+        }
     }
     private void setupLevel6Button() {
         ImageButton levelButton = (ImageButton) findViewById(R.id.level6Button);
-        levelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent activity = new Intent(LvlSelectActivity.this, MainActivity.class);
-                activity.putExtra("level", 5);
-                startActivity(activity);
-            }
-        });
+        if(levelButton.isClickable() == true) {
+            levelButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent activity = new Intent(LvlSelectActivity.this, MainActivity.class);
+                    activity.putExtra("level", 5);
+                    startActivity(activity);
+                }
+            });
+        }
     }
 
     @Override
