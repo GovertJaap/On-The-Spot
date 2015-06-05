@@ -3,6 +3,7 @@ package com.example.android.onthespot;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,6 +18,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.example.android.onthespot.util.LevelComplete;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,11 +32,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
 
 
 public class MainActivity extends ActionBarActivity {
     //Declaration of all variables used by this activity.
-    int newX, newY, typeChance, score, life, xPos, yPos, lastSpawn, xTouch, yTouch, timeAlive;
+    int newX, newY, typeChance, score, life, xPos, yPos, lastSpawn, xTouch, yTouch, timeAlive, timer;
     int levelNumber, circleSize, rectangleSize, hexagonSize, circleSpawnChance, rectangleSpawnChance, hexagonSpawnChance, maximumShapes, spawnSpeed;
     float size, shapeSize, density, rotation;
     float circleSpeed, rectangleSpeed, hexagonSpeed;
@@ -62,6 +66,21 @@ public class MainActivity extends ActionBarActivity {
         oldShapes = new ArrayList<>();
         rand = new Random();
         paint = new Paint();
+        timer = 60;
+        levelNumber = 0;
+        SharedPreferences sharedPreferences=getSharedPreferences("MyScores", Context.MODE_PRIVATE);
+        Integer HighScore=sharedPreferences.getInt("HighScore", 0);
+        Integer levelNumber=sharedPreferences.getInt("levelNumber", 0);
+
+        SharedPreferences sharedPreference = getSharedPreferences("MyScores", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreference.edit();
+
+        if(HighScore < score) {
+            editor.putInt("Highscore", score);
+            editor.commit();
+
+        }
+
 
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset());
@@ -316,12 +335,27 @@ public class MainActivity extends ActionBarActivity {
 
                     //Save the updated size in our object.
                     shapes.get(i).setShapeSize(shapeSize);
+                    //When te time is over the game will switch to the end game screen
+                    if(timer>=0) {
+                        timer--;
+                    }
+                    else{
+                        Intent intent = new Intent(MainActivity.this, LevelComplete.class);
+                        intent.putExtra("score", score);
+
+                        SharedPreferences sharedPreference = getSharedPreferences("MyScores", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreference.edit();
+                        editor.putInt("unlockNextLevel", levelNumber + 1);
+
+                        startActivity(intent);
+
+                    }
 
                     //If life reaches zero, the player will be game over
                     if (life <= 0) {
                         shapes.removeAll(shapes);
                         Intent activity = new Intent(MainActivity.this, GameOver.class);
-                        activity.putExtra("level", levelNumber-1);
+                        activity.putExtra("score", score);
                         startActivity(activity);
                     }
 
