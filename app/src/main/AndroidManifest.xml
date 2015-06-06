@@ -21,6 +21,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name=".LvlWon"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="Level Won"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".MenuActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
