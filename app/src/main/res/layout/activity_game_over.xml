@@ -40,9 +40,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Score:"
+        android:text="@string/score"
         android:id="@+id/textView2"
         android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -53,34 +55,4 @@
         android:id="@+id/textView3"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
-        android:id="@+id/textViewScore"
-        android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="High Score:"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/textViewScore"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="0"
-        android:id="@+id/textViewHighscore"
-        android:layout_below="@+id/textView4"
-        android:layout_alignRight="@+id/textView2"
-        android:layout_alignEnd="@+id/textView2"
-        android:layout_alignLeft="@+id/textViewScore"
-        android:layout_alignStart="@+id/textViewScore" />
 </RelativeLayout>
