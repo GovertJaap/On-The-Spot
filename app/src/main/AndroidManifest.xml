@@ -40,7 +40,11 @@
         <activity
             android:name=".LvlSelectActivity"
             android:parentActivityName=".MenuActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Options"
+            android:label="@string/title_activity_options" >
         </activity>
     </application>
 
