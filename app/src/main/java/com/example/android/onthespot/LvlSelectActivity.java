@@ -16,6 +16,13 @@ import android.widget.TextView;
 
 import com.example.android.onthespot.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+
 public class LvlSelectActivity extends ActionBarActivity {
     String scoreKey, unlockKey, levelScore, levelNumber, levelImage;
     int i;
@@ -31,10 +38,15 @@ public class LvlSelectActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lvl_select);
 
-        setupButtons();
+        try {
+            setupButtons();
+        }
+        catch (JSONException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void setupButtons() {
+    private void setupButtons() throws IOException, JSONException {
         for (i = 1; i < 7; i++) {
             scoreKey = "level" + i + "score";
             unlockKey = "level" + i + "unlock";
@@ -56,7 +68,26 @@ public class LvlSelectActivity extends ActionBarActivity {
 
                 int imageButtonId = getResources().getIdentifier(levelImage, "id", this.getPackageName());
                 ImageButton tLevelImage = (ImageButton) findViewById(imageButtonId);
-                tLevelImage.setImageResource(R.drawable.star0);
+
+                JSONObject obj = new JSONObject(loadJSONFromAsset());
+                JSONArray jArray = obj.getJSONArray("main");
+                JSONObject levelData = jArray.getJSONObject(i - 1);
+                int star1Requirement = levelData.getInt("1-Star");
+                int star2Requirement = levelData.getInt("2-Star");
+                int star3Requirement = levelData.getInt("3-Star");
+
+                if (prefs.getInt(scoreKey, 0) > star3Requirement) {
+                    tLevelImage.setImageResource(R.drawable.star3);
+                }
+                else if (prefs.getInt(scoreKey, 0) > star2Requirement) {
+                    tLevelImage.setImageResource(R.drawable.star2);
+                }
+                else if (prefs.getInt(scoreKey, 0) > star1Requirement) {
+                    tLevelImage.setImageResource(R.drawable.star1);
+                }
+                else {
+                    tLevelImage.setImageResource(R.drawable.star0);
+                }
                 tLevelImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
                 tLevelImage.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +127,24 @@ public class LvlSelectActivity extends ActionBarActivity {
                 tLevelImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
             }
         }
+    }
+
+    public String loadJSONFromAsset() throws IOException {
+        String json;
+        try {
+            InputStream is = getAssets().open("leveldata.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        }
+
+        catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
     }
 
 //    @Override
