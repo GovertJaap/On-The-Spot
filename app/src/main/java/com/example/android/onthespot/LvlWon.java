@@ -19,7 +19,7 @@ public class LvlWon extends ActionBarActivity {
     TextView tScore, tHighScore;
     int score, highscore, levelNumber;
     String scoreKey;
-    SharedPreferences prefs;
+
 
     //disables the default android backbutton
     @Override
@@ -46,7 +46,7 @@ public class LvlWon extends ActionBarActivity {
         scoreKey = "level" + levelNumber + "score";
         String unlockKey = "level" + (levelNumber + 1) + "unlock";
 
-        prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
+        SharedPreferences prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor  = prefs.edit();
         highscore = prefs.getInt(scoreKey, 0); //0 is the default value
 
@@ -63,6 +63,7 @@ public class LvlWon extends ActionBarActivity {
         tScore = (TextView) findViewById(R.id.scoreLevelWon);
         tScore.setText("Score: " + score);
         tHighScore = (TextView) findViewById(R.id.highscoreLevelWon);
+        SharedPreferences prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
         tHighScore.setText("Highscore: " + prefs.getInt(scoreKey, 0));
     }
 
