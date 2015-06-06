@@ -18,6 +18,7 @@ public class GameOver extends ActionBarActivity {
     TextView tScore, tHighScore;
     int score, highscore, levelNumber;
     String scoreKey;
+    SharedPreferences prefs;
 
     //disables the default android backbutton
     @Override
@@ -46,9 +47,8 @@ public class GameOver extends ActionBarActivity {
 
         levelNumber = getIntent().getExtras().getInt("level");
         scoreKey = "level" + levelNumber + "score";
-//        String unlockKey = "level" + (levelNumber + 1) + "unlock";
 
-        SharedPreferences prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
+        prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor  = prefs.edit();
         highscore = prefs.getInt(scoreKey, 0); //0 is the default value
 
@@ -57,16 +57,12 @@ public class GameOver extends ActionBarActivity {
             editor.putInt(scoreKey, highscore);
             editor.commit();
         }
-
-//        editor.putBoolean(unlockKey, true);
-
     }
 
     private void showScore() {
         tScore = (TextView) findViewById(R.id.scoreGameOver);
         tScore.setText("Score: " + score);
         tHighScore = (TextView) findViewById(R.id.highscoreGameOver);
-        SharedPreferences prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
         tHighScore.setText("Highscore: " + prefs.getInt(scoreKey, 0));
     }
 

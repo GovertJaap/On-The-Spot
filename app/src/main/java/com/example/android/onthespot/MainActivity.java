@@ -33,7 +33,7 @@ import java.util.Random;
 
 public class MainActivity extends ActionBarActivity {
     //Declaration of all variables used by this activity.
-    int newX, newY, typeChance, score, life, xPos, yPos, lastSpawn, xTouch, yTouch, timeAlive;
+    int newX, newY, typeChance, score, life, xPos, yPos, lastSpawn, xTouch, yTouch, timeAlive, gameTimer;
     int levelNumber, circleSize, rectangleSize, hexagonSize, circleSpawnChance, rectangleSpawnChance, hexagonSpawnChance, maximumShapes, spawnSpeed;
     float size, shapeSize, density, rotation;
     float circleSpeed, rectangleSpeed, hexagonSpeed;
@@ -55,6 +55,7 @@ public class MainActivity extends ActionBarActivity {
         size = shapeSize = density = rotation = 0f;
         newX = newY = typeChance = xPos = yPos = lastSpawn = xTouch = yTouch = timeAlive = 0;
         score = 0;
+        gameTimer = 600;
         life = 3;
         newType = type = "";
         justTouched = false;
@@ -366,6 +367,15 @@ public class MainActivity extends ActionBarActivity {
                 paint.setStrokeWidth(0);
                 paint.setTextAlign(Paint.Align.CENTER);
                 canvas.drawText("Resolution: " + getWidth() + "x" + getHeight() + "; " + newX + "," + newY + "; level: " + levelNumber + ", " + circleSize + "; Score: " + score + "; " + density + "; " + shapes.size(), getWidth() / 2, 25 * density, paint);
+
+                if (gameTimer <= 0) {
+                    Intent activity = new Intent(MainActivity.this, LvlWon.class);
+                    activity.putExtra("level", levelNumber);
+                    activity.putExtra("score", score);
+                    startActivity(activity);
+                }
+
+                gameTimer--;
             }
 
             //This method makes sure that onDraw is called every frame.

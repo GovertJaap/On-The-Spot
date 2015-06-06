@@ -40,22 +40,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Highscore: 5893"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:text="Highscore: 0"
+        android:id="@+id/highscoreLevelWon"
+        android:layout_below="@+id/scoreLevelWon" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Score: 3482"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2" />
+        android:text="Score: 0"
+        android:id="@+id/scoreLevelWon"
+        android:layout_below="@+id/textView" />
 
     <Button
         android:layout_width="match_parent"
