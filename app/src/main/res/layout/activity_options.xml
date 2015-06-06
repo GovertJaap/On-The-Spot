@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".util.OptionsActivity"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="On The Spot"
+        android:id="@+id/Menu_Text"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:textSize="40dp"
+        android:textColor="#ff000000" />
+
+    Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Play"
+        android:id="@+id/playButton"
+        android:clickable="true"
+        android:layout_gravity="center"
+        android:layout_above="@+id/leaderboardButton"
+        android:layout_centerHorizontal="true" />
+
+    Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Leaderboards"
+        android:id="@+id/leaderboardButton"
+        android:clickable="true"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reset high scores"
+        android:id="@+id/resetHighScoreButton"
+        android:clickable="true"
+        android:layout_below="@+id/Menu_Text"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="77dp" />
+
+</RelativeLayout>
