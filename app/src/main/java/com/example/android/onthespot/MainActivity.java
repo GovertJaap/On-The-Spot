@@ -48,17 +48,17 @@ public class MainActivity extends ActionBarActivity {
     Random rand;
     Paint paint;
 
-    //disables the default android backbutton
-    @Override
-    public void onBackPressed() {
-    }
+//    //disables the default android backbutton
+//    @Override
+//    public void onBackPressed() {
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Initialization of all variables used by this activity.
         size = shapeSize = density = rotation = 0f;
         newX = newY = typeChance = xPos = yPos = lastSpawn = xTouch = yTouch = timeAlive = 0;
-        score = 1000;
+        score = 0;
         life = 3;
         newType = type = "";
         justTouched = false;
@@ -381,7 +381,7 @@ public class MainActivity extends ActionBarActivity {
                                     xTouch < (xPos + shapeSize + (5 * density)) &&
                                     yTouch > (yPos - shapeSize - (5 * density)) &&
                                     yTouch < (yPos + shapeSize + (5 * density))) {
-                                score = score + (int) shapeSize; //Depending on the size of the shape, give more or less points.
+                                score = score + (int) (shapeSize * 5); //Depending on the size of the shape, give more or less points.
                                 shapes.get(i).setShapeSize(0);
                                 oldShapes.add(shapes.get(i));
                                 shapes.remove(i);
