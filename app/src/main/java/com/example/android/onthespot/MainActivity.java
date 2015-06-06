@@ -321,7 +321,8 @@ public class MainActivity extends ActionBarActivity {
                     if (life <= 0) {
                         shapes.removeAll(shapes);
                         Intent activity = new Intent(MainActivity.this, GameOver.class);
-                        activity.putExtra("level", levelNumber-1);
+                        activity.putExtra("level", levelNumber);
+                        activity.putExtra("score", score);
                         startActivity(activity);
                     }
 

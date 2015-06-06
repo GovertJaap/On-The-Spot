@@ -28,11 +28,7 @@ public class LvlSelectActivity extends ActionBarActivity {
         setupLevel4Button();
         setupLevel5Button();
         setupLevel6Button();
-
-
-
     }
-
 
     private void setupLevel1Button() {
         ImageButton levelButton = (ImageButton) findViewById(R.id.level1Button);

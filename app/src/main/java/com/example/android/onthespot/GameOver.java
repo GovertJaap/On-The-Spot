@@ -1,6 +1,8 @@
 package com.example.android.onthespot;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,9 +11,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class GameOver extends ActionBarActivity {
+    TextView tScore, tHighScore;
+    int score, highscore, levelNumber;
+    String scoreKey;
+
     //disables the default android backbutton
     @Override
     public void onBackPressed() {
@@ -24,7 +31,43 @@ public class GameOver extends ActionBarActivity {
 
         MenuButton();
         ScoreButton();
+        updateScore();
+        showScore();
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    private void updateScore() {
+        score = getIntent().getExtras().getInt("score");
+        //score = score - 5000;
+        if (score < 0) {
+            score = 0;
+        }
+
+        levelNumber = getIntent().getExtras().getInt("level");
+        scoreKey = "level" + levelNumber + "score";
+//        String unlockKey = "level" + (levelNumber + 1) + "unlock";
+
+        SharedPreferences prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor  = prefs.edit();
+        highscore = prefs.getInt(scoreKey, 0); //0 is the default value
+
+        if (score > highscore) {
+            highscore = score;
+            editor.putInt(scoreKey, highscore);
+            editor.commit();
+        }
+
+//        editor.putBoolean(unlockKey, true);
+
+    }
+
+    private void showScore() {
+        tScore = (TextView) findViewById(R.id.scoreGameOver);
+        tScore.setText("Score: " + score);
+        tHighScore = (TextView) findViewById(R.id.highscoreGameOver);
+        SharedPreferences prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
+        tHighScore.setText("Highscore: " + prefs.getInt(scoreKey, 0));
     }
 
     private void MenuButton() {
@@ -54,7 +97,7 @@ public class GameOver extends ActionBarActivity {
     public boolean onTouchEvent(MotionEvent e){
         if (e.getAction() == MotionEvent.ACTION_DOWN) {
             Intent activity = new Intent(GameOver.this, MainActivity.class);
-            activity.putExtra("level", getIntent().getExtras().getInt("level"));
+            activity.putExtra("level", levelNumber - 1);
             startActivity(activity);
         }
         return true;
