@@ -37,7 +37,7 @@ public class GameOver extends ActionBarActivity {
     public void load ()
     {
         SharedPreferences sharedPreferences=getSharedPreferences("MyScores", Context.MODE_PRIVATE);
-        Integer HighScore=sharedPreferences.getInt("HighScore1", 0);
+        Integer HighScore=sharedPreferences.getInt("HighScore", 20);
 
         highScoreTextView.setText(HighScore);
 

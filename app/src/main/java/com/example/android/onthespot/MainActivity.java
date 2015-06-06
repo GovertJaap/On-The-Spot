@@ -70,12 +70,13 @@ public class MainActivity extends ActionBarActivity {
         levelNumber = 0;
         SharedPreferences sharedPreferences=getSharedPreferences("MyScores", Context.MODE_PRIVATE);
         Integer HighScore=sharedPreferences.getInt("HighScore", 0);
+        Integer levelNumber=sharedPreferences.getInt("levelNumber", 0);
 
         SharedPreferences sharedPreference = getSharedPreferences("MyScores", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreference.edit();
 
         if(HighScore < score) {
-            editor.putInt("Highscore1", score);
+            editor.putInt("Highscore", score);
             editor.commit();
 
         }
