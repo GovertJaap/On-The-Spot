@@ -1,6 +1,8 @@
 package com.example.android.onthespot;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -15,10 +17,29 @@ import android.widget.Toast;
 import com.example.android.onthespot.R;
 
 public class MenuActivity extends Activity {
+
     //disables the default android backbutton
-//    @Override
-//    public void onBackPressed() {
-//    }
+    @Override
+    public void onBackPressed() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        finish();
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MenuActivity.this);
+        builder.setMessage("Are you sure you want to quit?")
+        .setPositiveButton("Yes, siree!", dialogClickListener)
+        .setNegativeButton("No way out", dialogClickListener).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +61,8 @@ public class MenuActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-
                 Intent activity = new Intent(MenuActivity.this, LvlSelectActivity.class);
-                //activity.putExtra("level", 0);
                 startActivity(activity);
-
             }
         });
     }

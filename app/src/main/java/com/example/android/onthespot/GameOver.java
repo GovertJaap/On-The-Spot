@@ -1,7 +1,9 @@
 package com.example.android.onthespot;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
@@ -31,10 +33,11 @@ public class GameOver extends Activity {
     String scoreKey;
     SharedPreferences prefs;
 
-    //disables the default android backbutton
-    @Override
-    public void onBackPressed() {
-    }
+//    //disables the default android backbutton
+//    @Override
+//    public void onBackPressed() {
+//
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +114,7 @@ public class GameOver extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(GameOver.this, MenuActivity.class));
+                finish();
                 //change to menu.class once integrated
             }
         });
@@ -135,6 +138,7 @@ public class GameOver extends Activity {
             Intent activity = new Intent(GameOver.this, MainActivity.class);
             activity.putExtra("level", levelNumber - 1);
             startActivity(activity);
+            finish();
         }
         return true;
     }

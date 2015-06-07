@@ -30,7 +30,6 @@ public class LvlWon extends Activity {
     int score, highscore, levelNumber;
     String scoreKey;
 
-
     //disables the default android backbutton
     @Override
     public void onBackPressed() {
@@ -130,7 +129,7 @@ public class LvlWon extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LvlWon.this, MenuActivity.class));
+                finish();
             }
         });
     }
@@ -155,6 +154,7 @@ public class LvlWon extends Activity {
                 Intent activity = new Intent(LvlWon.this, MainActivity.class);
                 activity.putExtra("level", levelNumber);
                 startActivity(activity);
+                finish();
             }
         });
     }
@@ -167,6 +167,7 @@ public class LvlWon extends Activity {
                 Intent activity = new Intent(LvlWon.this, MainActivity.class);
                 activity.putExtra("level", levelNumber - 1);
                 startActivity(activity);
+                finish();
             }
         });
     }

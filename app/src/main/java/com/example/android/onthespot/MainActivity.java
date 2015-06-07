@@ -328,6 +328,7 @@ public class MainActivity extends Activity {
                         activity.putExtra("level", levelNumber);
                         activity.putExtra("score", score);
                         startActivity(activity);
+                        finish();
                     }
 
                     //If the user has not touched the shape, remove it from our list and decrement i by 1.
@@ -376,6 +377,7 @@ public class MainActivity extends Activity {
                     activity.putExtra("level", levelNumber);
                     activity.putExtra("score", score);
                     startActivity(activity);
+                    finish();
                 }
 
                 gameTimer--;

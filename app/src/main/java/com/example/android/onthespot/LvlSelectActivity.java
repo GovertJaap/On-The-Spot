@@ -97,7 +97,6 @@ public class LvlSelectActivity extends Activity {
                 tLevelImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        System.out.println(i);
                         Intent activity = new Intent(LvlSelectActivity.this, MainActivity.class);
                         switch(v.getId()) {
                             case R.id.level1Button:
@@ -120,6 +119,7 @@ public class LvlSelectActivity extends Activity {
                                 break;
                         }
                         startActivity(activity);
+                        finish();
                     }
                 });
             }
@@ -138,8 +138,9 @@ public class LvlSelectActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LvlSelectActivity.this, MenuActivity.class));
-                //change to menu.class once integrated
+                Intent activity = new Intent(LvlSelectActivity.this, MenuActivity.class);
+                startActivity(activity);
+                finish();
             }
         });
     }
