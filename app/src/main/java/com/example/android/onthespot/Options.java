@@ -93,8 +93,6 @@ public class Options extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent activity = new Intent(Options.this, MenuActivity.class);
-                startActivity(activity);
                 finish();
                 //change to menu.class once integrated
             }

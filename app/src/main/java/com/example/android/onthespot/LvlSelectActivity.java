@@ -138,8 +138,6 @@ public class LvlSelectActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent activity = new Intent(LvlSelectActivity.this, MenuActivity.class);
-                startActivity(activity);
                 finish();
             }
         });
