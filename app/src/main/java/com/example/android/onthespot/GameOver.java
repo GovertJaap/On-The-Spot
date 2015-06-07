@@ -11,8 +11,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class GameOver extends ActionBarActivity {
     TextView tScore, tHighScore;
@@ -33,7 +42,12 @@ public class GameOver extends ActionBarActivity {
         MenuButton();
         ScoreButton();
         updateScore();
-        showScore();
+        try {
+            showScore();
+        }
+        catch (JSONException | IOException e) {
+            e.printStackTrace();
+        }
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
@@ -59,11 +73,34 @@ public class GameOver extends ActionBarActivity {
         }
     }
 
-    private void showScore() {
+    private void showScore() throws IOException, JSONException {
         tScore = (TextView) findViewById(R.id.scoreGameOver);
         tScore.setText("Score: " + score);
         tHighScore = (TextView) findViewById(R.id.highscoreGameOver);
         tHighScore.setText("Highscore: " + prefs.getInt(scoreKey, 0));
+
+        ImageView tLevelImage = (ImageView) findViewById(R.id.starViewWon);
+
+        JSONObject obj = new JSONObject(loadJSONFromAsset());
+        JSONArray jArray = obj.getJSONArray("main");
+        JSONObject levelData = jArray.getJSONObject(levelNumber-1);
+        int star1Requirement = levelData.getInt("1-Star");
+        int star2Requirement = levelData.getInt("2-Star");
+        int star3Requirement = levelData.getInt("3-Star");
+
+        if (prefs.getInt(scoreKey, 0) > star3Requirement) {
+            tLevelImage.setImageResource(R.drawable.stars_3);
+        }
+        else if (prefs.getInt(scoreKey, 0) > star2Requirement) {
+            tLevelImage.setImageResource(R.drawable.stars_2);
+        }
+        else if (prefs.getInt(scoreKey, 0) > star1Requirement) {
+            tLevelImage.setImageResource(R.drawable.stars_1);
+        }
+        else {
+            tLevelImage.setImageResource(R.drawable.stars_0);
+        }
+        tLevelImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
     }
 
     private void MenuButton() {
@@ -99,6 +136,23 @@ public class GameOver extends ActionBarActivity {
         return true;
     }
 
+    public String loadJSONFromAsset() throws IOException {
+        String json;
+        try {
+            InputStream is = getAssets().open("leveldata.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        }
+
+        catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
 /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -44,6 +44,7 @@ public class LvlSelectActivity extends ActionBarActivity {
         catch (JSONException | IOException e) {
             e.printStackTrace();
         }
+        backButton();
     }
 
     private void setupButtons() throws IOException, JSONException {
@@ -127,6 +128,17 @@ public class LvlSelectActivity extends ActionBarActivity {
                 tLevelImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
             }
         }
+    }
+
+    private void backButton() {
+        ImageButton button = (ImageButton) findViewById(R.id.backButtonLvlSelect);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LvlSelectActivity.this, MenuActivity.class));
+                //change to menu.class once integrated
+            }
+        });
     }
 
     public String loadJSONFromAsset() throws IOException {

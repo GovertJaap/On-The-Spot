@@ -40,4 +40,14 @@
         android:layout_below="@+id/resetUnlocks"
         android:layout_centerHorizontal="true" />
 
+    <ImageButton
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:id="@+id/backButtonOptions"
+        android:background="@drawable/back"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"/>
+
 </RelativeLayout>

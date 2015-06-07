@@ -1,6 +1,7 @@
 package com.example.android.onthespot;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.android.onthespot.R;
@@ -31,6 +33,7 @@ public class Options extends ActionBarActivity {
         resetScores();
         resetUnlocks();
         unlockAllLevels();
+        backButton();
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
@@ -78,6 +81,17 @@ public class Options extends ActionBarActivity {
                     editor.putBoolean(unlockKey, true);
                     editor.commit();
                 }
+            }
+        });
+    }
+
+    private void backButton() {
+        ImageButton button = (ImageButton) findViewById(R.id.backButtonOptions);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Options.this, MenuActivity.class));
+                //change to menu.class once integrated
             }
         });
     }

@@ -102,8 +102,8 @@
             android:layout_row="0"
             android:layout_column="2"
             android:background="@drawable/levellocked"
-            android:maxWidth="100dp"
-            android:maxHeight="100dp"
+            android:maxWidth="200dp"
+            android:maxHeight="200dp"
             android:clickable="true"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"/>
@@ -269,5 +269,17 @@
         android:layout_marginTop="42dp"
         android:textColor="#ff000000"
         android:textSize="40dp" />
+
+    <ImageButton
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:id="@+id/backButtonLvlSelect"
+        android:background="@drawable/back"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/gridLayout"
+        android:layout_alignEnd="@+id/gridLayout"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp" />
 
 </RelativeLayout>

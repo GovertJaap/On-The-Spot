@@ -62,4 +62,15 @@
         android:id="@+id/textView3"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="201dp"
+        android:layout_height="60dp"
+        android:id="@+id/starViewGameOver"
+        android:background="@drawable/stars_0"
+        android:maxWidth="200dp"
+        android:maxHeight="200dp"
+        android:layout_below="@+id/highscoreGameOver"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
 </RelativeLayout>
