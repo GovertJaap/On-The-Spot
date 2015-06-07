@@ -1,5 +1,6 @@
 package com.example.android.onthespot;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -23,7 +25,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class LvlSelectActivity extends ActionBarActivity {
+public class LvlSelectActivity extends Activity {
     String scoreKey, unlockKey, levelScore, levelNumber, levelImage;
     int i;
     SharedPreferences prefs;
@@ -36,6 +38,7 @@ public class LvlSelectActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_lvl_select);
 
         try {

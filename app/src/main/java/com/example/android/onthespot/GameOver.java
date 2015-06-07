@@ -1,5 +1,6 @@
 package com.example.android.onthespot;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -23,7 +25,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class GameOver extends ActionBarActivity {
+public class GameOver extends Activity {
     TextView tScore, tHighScore;
     int score, highscore, levelNumber;
     String scoreKey;
@@ -37,6 +39,7 @@ public class GameOver extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_game_over);
 
         MenuButton();
@@ -79,7 +82,7 @@ public class GameOver extends ActionBarActivity {
         tHighScore = (TextView) findViewById(R.id.highscoreGameOver);
         tHighScore.setText("Highscore: " + prefs.getInt(scoreKey, 0));
 
-        ImageView tLevelImage = (ImageView) findViewById(R.id.starViewWon);
+        ImageView tLevelImage = (ImageView) findViewById(R.id.starViewGameOver);
 
         JSONObject obj = new JSONObject(loadJSONFromAsset());
         JSONArray jArray = obj.getJSONArray("main");

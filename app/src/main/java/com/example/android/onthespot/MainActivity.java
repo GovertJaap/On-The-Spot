@@ -1,5 +1,6 @@
 package com.example.android.onthespot;
 
+import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 
 import org.json.JSONArray;
@@ -31,7 +33,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
     //Declaration of all variables used by this activity.
     int newX, newY, typeChance, score, life, xPos, yPos, lastSpawn, xTouch, yTouch, timeAlive, gameTimer;
     int levelNumber, circleSize, rectangleSize, hexagonSize, circleSpawnChance, rectangleSpawnChance, hexagonSpawnChance, maximumShapes, spawnSpeed;
@@ -94,7 +96,8 @@ public class MainActivity extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         //Used to have the action bar of the application so it isn't overlayed on the screen during a fullscreen activity.
-        getSupportActionBar().hide();
+//        getSupportActionBar().hide();
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(new MyView(this));
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }

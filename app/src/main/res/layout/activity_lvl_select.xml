@@ -271,10 +271,10 @@
         android:textSize="40dp" />
 
     <ImageButton
-        android:layout_width="65dp"
+        android:layout_width="55dp"
         android:layout_height="65dp"
         android:id="@+id/backButtonLvlSelect"
-        android:background="@drawable/back"
+        android:background="@drawable/undo"
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/gridLayout"
         android:layout_alignEnd="@+id/gridLayout"

@@ -1,5 +1,6 @@
 package com.example.android.onthespot;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -15,7 +17,7 @@ import android.widget.Toast;
 
 import com.example.android.onthespot.R;
 
-public class Options extends ActionBarActivity {
+public class Options extends Activity {
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     String scoreKey;
@@ -25,6 +27,7 @@ public class Options extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_options);
 
         prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);

@@ -33,18 +33,20 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".LvlSelectActivity"
-            android:parentActivityName=".MenuActivity"
+            android:label="@string/title_activity_lvl_select"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Options"
-            android:label="@string/title_activity_options" >
+            android:label="@string/title_activity_options"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
