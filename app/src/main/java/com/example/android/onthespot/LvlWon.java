@@ -31,9 +31,9 @@ public class LvlWon extends Activity {
     String scoreKey;
 
     //disables the default android backbutton
-    @Override
-    public void onBackPressed() {
-    }
+//    @Override
+//    public void onBackPressed() {
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,10 +125,12 @@ public class LvlWon extends Activity {
     }
 
     private void MenuButton() {
-        Button button = (Button) findViewById(R.id.GotoMenu);
+        Button button = (Button) findViewById(R.id.GotoMenuWon);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Intent activity = new Intent(LvlWon.this, MenuActivity.class);
+//                startActivity(activity);
                 finish();
             }
         });

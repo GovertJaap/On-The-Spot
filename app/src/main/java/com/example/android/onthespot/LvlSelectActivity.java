@@ -30,9 +30,11 @@ public class LvlSelectActivity extends Activity {
     int i;
     SharedPreferences prefs;
 
-//    //disables the default android backbutton
 //    @Override
 //    public void onBackPressed() {
+//        Intent activity = new Intent(LvlSelectActivity.this, MenuActivity.class);
+//        startActivity(activity);
+//        finish();
 //    }
 
     @Override
@@ -138,6 +140,8 @@ public class LvlSelectActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Intent activity = new Intent(LvlSelectActivity.this, MenuActivity.class);
+//                startActivity(activity);
                 finish();
             }
         });

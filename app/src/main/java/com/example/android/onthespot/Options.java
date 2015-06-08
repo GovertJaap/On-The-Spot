@@ -23,6 +23,12 @@ public class Options extends Activity {
     String scoreKey;
     String unlockKey;
 
+//    @Override
+//    public void onBackPressed() {
+//        Intent activity = new Intent(Options.this, MenuActivity.class);
+//        startActivity(activity);
+//        finish();
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +99,8 @@ public class Options extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Intent activity = new Intent(Options.this, MenuActivity.class);
+//                startActivity(activity);
                 finish();
                 //change to menu.class once integrated
             }

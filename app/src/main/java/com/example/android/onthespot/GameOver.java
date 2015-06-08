@@ -45,8 +45,6 @@ public class GameOver extends Activity {
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_game_over);
 
-        MenuButton();
-        ScoreButton();
         updateScore();
         try {
             showScore();
@@ -54,6 +52,8 @@ public class GameOver extends Activity {
         catch (JSONException | IOException e) {
             e.printStackTrace();
         }
+        MenuButton();
+        ScoreButton();
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
@@ -110,10 +110,12 @@ public class GameOver extends Activity {
     }
 
     private void MenuButton() {
-        Button button = (Button) findViewById(R.id.GotoMenu);
+        Button button = (Button) findViewById(R.id.GotoMenuGameOver);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Intent activity = new Intent(GameOver.this, MenuActivity.class);
+//                startActivity(activity);
                 finish();
                 //change to menu.class once integrated
             }

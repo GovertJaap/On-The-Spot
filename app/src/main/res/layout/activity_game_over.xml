@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="Leaderboards"
         android:id="@+id/Leaderboards"
-        android:layout_above="@+id/GotoMenu"
+        android:layout_above="@+id/GotoMenuGameOver"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Main Menu"
-        android:id="@+id/GotoMenu"
+        android:id="@+id/GotoMenuGameOver"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

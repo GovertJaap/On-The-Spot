@@ -9,24 +9,28 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
+            android:launchMode= "singleInstance"
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:launchMode= "singleInstance"
             android:name=".GameOver"
             android:configChanges="orientation|keyboardHidden"
             android:label="Game Over"
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:launchMode= "singleInstance"
             android:name=".LvlWon"
             android:configChanges="orientation|keyboardHidden"
             android:label="Level Won"
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:launchMode= "singleInstance"
             android:name=".MenuActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
@@ -37,12 +41,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:launchMode= "singleInstance"
             android:name=".LvlSelectActivity"
             android:label="@string/title_activity_lvl_select"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:launchMode= "singleInstance"
             android:name=".Options"
             android:label="@string/title_activity_options"
             android:configChanges="orientation|keyboardHidden"

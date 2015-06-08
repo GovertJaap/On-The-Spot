@@ -57,8 +57,8 @@ public class MainActivity extends Activity {
         size = shapeSize = density = rotation = 0f;
         newX = newY = typeChance = xPos = yPos = lastSpawn = xTouch = yTouch = timeAlive = 0;
         score = 0;
-        gameTimer = 3600;
-        life = 3;
+        gameTimer = 600;
+        life = 5;
         newType = type = "";
         justTouched = false;
         shapes = new ArrayList<>();
@@ -178,7 +178,7 @@ public class MainActivity extends Activity {
                     //Get a new random x and y coordinate used to spawn the new shape.
                     //The limits for this depend on the density and pixel height/width of the screen.
                     newX = (int) (rand.nextInt(getWidth() - Math.round(120 * density)) + (60 * density));
-                    newY = (int) (rand.nextInt(getHeight() - Math.round(150 * density)) + (90 * density));
+                    newY = (int) (rand.nextInt(getHeight() - Math.round(160 * density)) + (100 * density));
                     rotation = rand.nextInt(360);
 
                     //Get a random number between 0 and 100 used for the chance calculation of what shape will spawn.
@@ -323,7 +323,7 @@ public class MainActivity extends Activity {
 
                     //If life reaches zero, the player will be game over
                     if (life <= 0) {
-                        shapes.removeAll(shapes);
+//                        shapes.removeAll(shapes);
                         Intent activity = new Intent(MainActivity.this, GameOver.class);
                         activity.putExtra("level", levelNumber);
                         activity.putExtra("score", score);
@@ -367,10 +367,16 @@ public class MainActivity extends Activity {
 
                 /****** Code for drawing debug text ********/
                 paint.setColor(Color.BLACK);
-                paint.setTextSize(12 * density);
+                paint.setTextSize(24 * density);
                 paint.setStrokeWidth(0);
                 paint.setTextAlign(Paint.Align.CENTER);
-                canvas.drawText("Resolution: " + getWidth() + "x" + getHeight() + "; " + newX + "," + newY + "; level: " + levelNumber + ", " + circleSize + "; Score: " + score + "; " + density + "; " + shapes.size(), getWidth() / 2, 25 * density, paint);
+                canvas.drawText("Lives: ", getWidth() / 7, 25 * density, paint);
+                canvas.drawText("" + life, getWidth() / 7, 50 * density, paint);
+                canvas.drawText("Score: ", getWidth() / 2.65f, 25 * density, paint);
+                canvas.drawText("" + score, getWidth() / 2.65f, 50 * density, paint);
+                canvas.drawText("Time Left: ", getWidth() / 1.55f, 25 * density, paint);
+                canvas.drawText("" + gameTimer / 60, getWidth() / 1.55f, 50 * density, paint);
+
 
                 if (gameTimer <= 0) {
                     Intent activity = new Intent(MainActivity.this, LvlWon.class);

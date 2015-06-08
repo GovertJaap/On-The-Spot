@@ -25,11 +25,11 @@ public class MenuActivity extends Activity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
-                    case DialogInterface.BUTTON_POSITIVE:
+                    case DialogInterface.BUTTON_NEGATIVE:
                         finish();
                         break;
 
-                    case DialogInterface.BUTTON_NEGATIVE:
+                    case DialogInterface.BUTTON_POSITIVE:
                         break;
                 }
             }
@@ -37,8 +37,8 @@ public class MenuActivity extends Activity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MenuActivity.this);
         builder.setMessage("Are you sure you want to quit?")
-        .setPositiveButton("Yes, siree!", dialogClickListener)
-        .setNegativeButton("No way out", dialogClickListener).show();
+        .setNegativeButton("Yes, siree!", dialogClickListener)
+        .setPositiveButton("No way out", dialogClickListener).show();
     }
 
     @Override
@@ -62,7 +62,9 @@ public class MenuActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent activity = new Intent(MenuActivity.this, LvlSelectActivity.class);
+//                activity.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(activity);
+//                finish();
             }
         });
     }
@@ -88,6 +90,7 @@ public class MenuActivity extends Activity {
             public void onClick(View v) {
                 Intent activity = new Intent(MenuActivity.this, Options.class);
                 startActivity(activity);
+//                finish();
             }
         });
     }
