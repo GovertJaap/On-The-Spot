@@ -57,8 +57,8 @@ public class MainActivity extends Activity {
         size = shapeSize = density = rotation = 0f;
         newX = newY = typeChance = xPos = yPos = lastSpawn = xTouch = yTouch = timeAlive = 0;
         score = 0;
-        gameTimer = 600;
-        life = 5;
+        gameTimer = 3600;
+        life = 3;
         newType = type = "";
         justTouched = false;
         shapes = new ArrayList<>();
