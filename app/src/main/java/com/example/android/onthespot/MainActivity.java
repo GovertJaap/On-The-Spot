@@ -35,7 +35,7 @@ import java.util.Random;
 
 public class MainActivity extends Activity {
     //Declaration of all variables used by this activity.
-    int newX, newY, typeChance, score, life, xPos, yPos, lastSpawn, xTouch, yTouch, timeAlive, gameTimer;
+    int newX, newY, typeChance, score, life, xPos, yPos, lastSpawn, xTouch, yTouch, timeAlive, gameTimer, randomSpawnTime;
     int levelNumber, circleSize, rectangleSize, hexagonSize, circleSpawnChance, rectangleSpawnChance, hexagonSpawnChance, maximumShapes, spawnSpeed;
     float size, shapeSize, density, rotation;
     float circleSpeed, rectangleSpeed, hexagonSpeed;
@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         //Initialization of all variables used by this activity.
         size = shapeSize = density = rotation = 0f;
-        newX = newY = typeChance = xPos = yPos = lastSpawn = xTouch = yTouch = timeAlive = 0;
+        newX = newY = typeChance = xPos = yPos = lastSpawn = xTouch = yTouch = timeAlive = randomSpawnTime = 0;
         score = 0;
         gameTimer = 3600;
         life = 3;
@@ -120,15 +120,15 @@ public class MainActivity extends Activity {
         return json;
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//    }
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
@@ -172,9 +172,11 @@ public class MainActivity extends Activity {
                     density = getResources().getDisplayMetrics().density;
                 }
 
+                randomSpawnTime = rand.nextInt((int) (spawnSpeed * 1.3)) + (int) (spawnSpeed / 1.5);
+
                 //This code makes sure that there won't spawn any more shapes than the maximum number allowed.
                 //Also checks the variable lastSpawn so that shapes don't spawn too fast after each other.
-                if (shapes.size() <= maximumShapes && lastSpawn > spawnSpeed) {
+                if (shapes.size() <= maximumShapes && lastSpawn > randomSpawnTime) {
                     //Get a new random x and y coordinate used to spawn the new shape.
                     //The limits for this depend on the density and pixel height/width of the screen.
                     newX = (int) (rand.nextInt(getWidth() - Math.round(120 * density)) + (60 * density));
