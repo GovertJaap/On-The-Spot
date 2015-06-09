@@ -9,17 +9,6 @@
     tools:context="com.example.android.onthespot.MenuActivity">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="On The Spot"
-        android:id="@+id/Menu_Text"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
-        android:textSize="40dp"
-        android:textColor="#ff000000" />
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,5 +37,14 @@
         android:layout_below="@+id/leaderboardButton"
         android:layout_alignLeft="@+id/playButton"
         android:layout_alignStart="@+id/playButton" />
+
+    <ImageView
+        android:layout_width="307dp"
+        android:layout_height="65dp"
+        android:id="@+id/logoImage"
+        android:background="@drawable/logo"
+        android:layout_marginBottom="70dp"
+        android:layout_above="@+id/playButton"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
