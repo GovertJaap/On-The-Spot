@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MotionEvent;
@@ -29,6 +30,7 @@ public class LvlWon extends Activity {
     TextView tScore, tHighScore;
     int score, highscore, levelNumber;
     String scoreKey;
+    FullMenu musicClass = new FullMenu();
 
     //disables the default android backbutton
 //    @Override
@@ -40,6 +42,12 @@ public class LvlWon extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_lvl_won);
+
+        if (musicClass.playing == false) {
+            musicClass.mpPlayer = musicClass.createMusic().create(this, R.raw.menu);
+            musicClass.mpPlayer.start();
+            musicClass.playing = true;
+        } else { }
 
         updateScore();
         try {
@@ -153,6 +161,8 @@ public class LvlWon extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                musicClass.mpPlayer.release();
+                musicClass.playing = false;
                 Intent activity = new Intent(LvlWon.this, MainActivity.class);
                 activity.putExtra("level", levelNumber);
                 startActivity(activity);
@@ -166,6 +176,8 @@ public class LvlWon extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                musicClass.mpPlayer.release();
+                musicClass.playing = false;
                 Intent activity = new Intent(LvlWon.this, MainActivity.class);
                 activity.putExtra("level", levelNumber - 1);
                 startActivity(activity);

@@ -19,10 +19,7 @@ import com.example.android.onthespot.R;
 
 public class MenuActivity extends Activity {
 
-    //disables the default android backbutton
-
-//    MediaPlayer mpPlayer;
-//    boolean playing;
+    FullMenu musicClass = new FullMenu();
 
     @Override
     public void onBackPressed() {
@@ -31,7 +28,7 @@ public class MenuActivity extends Activity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_NEGATIVE:
-//                        mpPlayer.release();
+                        musicClass.mpPlayer.release();
                         finish();
                         break;
 
@@ -53,8 +50,17 @@ public class MenuActivity extends Activity {
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_menu);
 
-//        mpPlayer = MediaPlayer.create(this, R.raw.menu);
-//        mpPlayer.start();
+        if (musicClass.playing == false) {
+            musicClass.mpPlayer = musicClass.createMusic().create(this, R.raw.menu);
+            musicClass.mpPlayer.start();
+            musicClass.playing = true;
+        } else { }
+
+//        boolean playing = getIntent().getExtras().getBoolean("playing");
+//        if (playing == false) {
+//            mpPlayer = MediaPlayer.create(this, R.raw.menu);
+//            mpPlayer.start();
+//        } else { mpPlayer.release(); }
 //        playing = true;
 
         setupPlayButton();
@@ -62,7 +68,6 @@ public class MenuActivity extends Activity {
         optionsButton();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
-
 
     private void setupPlayButton() {
         Button playButton = (Button) findViewById(R.id.playButton);
@@ -104,6 +109,7 @@ public class MenuActivity extends Activity {
             }
         });
     }
+
 //
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {

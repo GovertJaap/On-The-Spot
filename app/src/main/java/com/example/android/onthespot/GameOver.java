@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -32,6 +33,8 @@ public class GameOver extends Activity {
     int score, highscore, levelNumber;
     String scoreKey;
     SharedPreferences prefs;
+    MediaPlayer local;
+    FullMenu musicClass = new FullMenu();
 
 //    //disables the default android backbutton
 //    @Override
@@ -44,6 +47,12 @@ public class GameOver extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_game_over);
+
+        if (musicClass.playing == false) {
+            local = musicClass.createMusic().create(this, R.raw.menu);
+            local.start();
+            musicClass.playing = true;
+        } else { }
 
         updateScore();
         try {
@@ -114,8 +123,6 @@ public class GameOver extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent activity = new Intent(GameOver.this, MenuActivity.class);
-//                startActivity(activity);
                 finish();
                 //change to menu.class once integrated
             }
@@ -137,6 +144,8 @@ public class GameOver extends Activity {
     @Override
     public boolean onTouchEvent(MotionEvent e){
         if (e.getAction() == MotionEvent.ACTION_DOWN) {
+            local.release();
+            musicClass.playing = false;
             Intent activity = new Intent(GameOver.this, MainActivity.class);
             activity.putExtra("level", levelNumber - 1);
             startActivity(activity);

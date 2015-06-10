@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +30,7 @@ public class LvlSelectActivity extends Activity {
     String scoreKey, unlockKey, levelScore, levelNumber, levelImage;
     int i;
     SharedPreferences prefs;
+    FullMenu musicClass = new FullMenu();
 
 //    @Override
 //    public void onBackPressed() {
@@ -42,6 +44,12 @@ public class LvlSelectActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_lvl_select);
+
+        if (musicClass.playing == false) {
+            musicClass.mpPlayer = musicClass.createMusic().create(this, R.raw.menu);
+            musicClass.mpPlayer.start();
+            musicClass.playing = true;
+        } else { }
 
         try {
             setupButtons();
@@ -99,6 +107,8 @@ public class LvlSelectActivity extends Activity {
                 tLevelImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        musicClass.mpPlayer.release();
+                        musicClass.playing = false;
                         Intent activity = new Intent(LvlSelectActivity.this, MainActivity.class);
                         switch(v.getId()) {
                             case R.id.level1Button:

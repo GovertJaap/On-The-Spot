@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,6 +23,7 @@ public class Options extends Activity {
     SharedPreferences.Editor editor;
     String scoreKey;
     String unlockKey;
+    FullMenu musicClass = new FullMenu();
 
 //    @Override
 //    public void onBackPressed() {
@@ -38,6 +40,12 @@ public class Options extends Activity {
 
         prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
         editor = prefs.edit();
+
+        if (musicClass.playing == false) {
+            musicClass.mpPlayer = musicClass.createMusic().create(this, R.raw.menu);
+            musicClass.mpPlayer.start();
+            musicClass.playing = true;
+        } else { }
 
         resetScores();
         resetUnlocks();
