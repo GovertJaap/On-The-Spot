@@ -25,13 +25,6 @@ public class Options extends Activity {
     String unlockKey;
     FullMenu musicClass = new FullMenu();
 
-//    @Override
-//    public void onBackPressed() {
-//        Intent activity = new Intent(Options.this, MenuActivity.class);
-//        startActivity(activity);
-//        finish();
-//    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +54,7 @@ public class Options extends Activity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Options.this, "Your scores have been reset", Toast.LENGTH_LONG).show();
-                for (int i = 1; i < 11; i++) {
+                for (int i = 1; i < 13; i++) {
                     scoreKey = "level" + i + "score";
                     editor.putInt(scoreKey, 0);
                     editor.commit();
@@ -76,7 +69,7 @@ public class Options extends Activity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Options.this, "All levels have been reset", Toast.LENGTH_LONG).show();
-                for (int i = 1; i < 11; i++) {
+                for (int i = 1; i < 13; i++) {
                     scoreKey = "level" + i + "score";
                     unlockKey = "level" + i + "unlock";
                     editor.putInt(scoreKey, 0);
@@ -93,7 +86,7 @@ public class Options extends Activity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Options.this, "All levels have been unlocked", Toast.LENGTH_LONG).show();
-                for (int i = 1; i < 11; i++) {
+                for (int i = 1; i < 13; i++) {
                     unlockKey = "level" + i + "unlock";
                     editor.putBoolean(unlockKey, true);
                     editor.commit();
@@ -107,34 +100,8 @@ public class Options extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent activity = new Intent(Options.this, MenuActivity.class);
-//                startActivity(activity);
                 finish();
-                //change to menu.class once integrated
             }
         });
     }
-
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_options, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 }

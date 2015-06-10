@@ -10,10 +10,7 @@ import android.graphics.Paint;
 
 import android.graphics.Path;
 import android.media.MediaPlayer;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,7 +26,6 @@ import static java.lang.Math.sin;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -47,13 +43,7 @@ public class MainActivity extends Activity {
     Random rand;
     Paint paint;
     MediaPlayer mpPlayer;
-
-    //disables the default android backbutton
-    @Override
-    public void onBackPressed() {
-        mpPlayer.release();
-        finish();
-    }
+    static MainActivity mainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +59,7 @@ public class MainActivity extends Activity {
         oldShapes = new ArrayList<>();
         rand = new Random();
         paint = new Paint();
+        mainActivity = this;
 
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset());
@@ -100,7 +91,6 @@ public class MainActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         //Used to have the action bar of the application so it isn't overlayed on the screen during a fullscreen activity.
-//        getSupportActionBar().hide();
 
         mpPlayer = MediaPlayer.create(this, musicSwitch(levelNumber));
         mpPlayer.start();
@@ -110,73 +100,6 @@ public class MainActivity extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
-    public String loadJSONFromAsset() throws IOException {
-        String json;
-        try {
-            InputStream is = getAssets().open("leveldata.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            json = new String(buffer, "UTF-8");
-        }
-
-        catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-        return json;
-    }
-
-    private int musicSwitch(int i) {
-        switch (i) {
-            case 1:  music = R.raw.kickshock;
-                break;
-            case 2:  music = R.raw.bitdungeonboss;
-                break;
-            case 3:  music = R.raw.kickshock;
-                break;
-            case 4:  music = R.raw.bitdungeonboss;
-                break;
-            case 5:  music = R.raw.kickshock;
-                break;
-            default: music = R.raw.bitdungeonboss;;
-                break;
-        }
-        return music;
-    }
-
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     public class MyView extends View {
 
@@ -642,5 +565,54 @@ public class MainActivity extends Activity {
                 this.timeAlive = timeAlive;
             }
         }
+    }
+
+    public static MainActivity getInstance() {
+        return mainActivity;
+    }
+
+    //disables the default android backbutton
+    @Override
+    public void onBackPressed() {
+        mpPlayer.release();
+        Intent activity = new Intent(MainActivity.this, Pause.class);
+        activity.putExtra("level", levelNumber);
+        startActivity(activity);
+    }
+
+    public String loadJSONFromAsset() throws IOException {
+        String json;
+        try {
+            InputStream is = getAssets().open("leveldata.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, "UTF-8");
+        }
+
+        catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+
+    private int musicSwitch(int i) {
+        switch (i) {
+            case 1:  music = R.raw.kickshock;
+                break;
+            case 2:  music = R.raw.bitdungeonboss;
+                break;
+            case 3:  music = R.raw.kickshock;
+                break;
+            case 4:  music = R.raw.bitdungeonboss;
+                break;
+            case 5:  music = R.raw.kickshock;
+                break;
+            default: music = R.raw.bitdungeonboss;;
+                break;
+        }
+        return music;
     }
 }

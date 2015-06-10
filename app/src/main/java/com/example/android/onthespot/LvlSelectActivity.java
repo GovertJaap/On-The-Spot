@@ -4,22 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-import android.media.MediaPlayer;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.example.android.onthespot.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,13 +25,6 @@ public class LvlSelectActivity extends Activity {
     int i;
     SharedPreferences prefs;
     FullMenu musicClass = new FullMenu();
-
-//    @Override
-//    public void onBackPressed() {
-//        Intent activity = new Intent(LvlSelectActivity.this, MenuActivity.class);
-//        startActivity(activity);
-//        finish();
-//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,9 +159,6 @@ public class LvlSelectActivity extends Activity {
                 final GridLayout grid1 = (GridLayout) findViewById(R.id.gridLvlSelect1);
                 final GridLayout grid2 = (GridLayout) findViewById(R.id.gridLvlSelect2);
 
-
-
-
                 grid2.animate().setDuration(0
                 ).scaleX(1).scaleY(1).translationX(0).translationY(0).withEndAction(new Runnable() {
                     @Override
@@ -219,8 +201,6 @@ public class LvlSelectActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent activity = new Intent(LvlSelectActivity.this, MenuActivity.class);
-//                startActivity(activity);
                 finish();
             }
         });
@@ -243,19 +223,4 @@ public class LvlSelectActivity extends Activity {
         }
         return json;
     }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 }

@@ -16,4 +16,5 @@
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_lvl_select">LvlSelectActivity</string>
     <string name="title_activity_options">Options</string>
+    <string name="title_activity_pause">Pause</string>
 </resources>
