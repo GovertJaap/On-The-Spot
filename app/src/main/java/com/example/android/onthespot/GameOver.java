@@ -127,7 +127,7 @@ public class GameOver extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(GameOver.this, "Leaderboards are not available.", Toast.LENGTH_LONG).show();
+                Toast.makeText(GameOver.this, "Leaderboards are " + R.raw.bitdungeonboss + " this cool", Toast.LENGTH_LONG).show();
                 //startActivity(new Intent(GameOver.this, MainActivity.class));
                 //change to leaderboards.class once integrated
             }

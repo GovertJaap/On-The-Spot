@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -19,6 +20,10 @@ import com.example.android.onthespot.R;
 public class MenuActivity extends Activity {
 
     //disables the default android backbutton
+
+//    MediaPlayer mpPlayer;
+//    boolean playing;
+
     @Override
     public void onBackPressed() {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -26,6 +31,7 @@ public class MenuActivity extends Activity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_NEGATIVE:
+//                        mpPlayer.release();
                         finish();
                         break;
 
@@ -46,6 +52,10 @@ public class MenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_menu);
+
+//        mpPlayer = MediaPlayer.create(this, R.raw.menu);
+//        mpPlayer.start();
+//        playing = true;
 
         setupPlayButton();
         scoreButton();

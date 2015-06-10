@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import android.graphics.Path;
+import android.media.MediaPlayer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,7 +37,7 @@ import java.util.Random;
 public class MainActivity extends Activity {
     //Declaration of all variables used by this activity.
     int newX, newY, typeChance, score, life, xPos, yPos, lastSpawn, xTouch, yTouch, timeAlive, gameTimer, randomSpawnTime;
-    int levelNumber, circleSize, rectangleSize, hexagonSize, circleSpawnChance, rectangleSpawnChance, hexagonSpawnChance, maximumShapes, spawnSpeed;
+    int levelNumber, circleSize, rectangleSize, hexagonSize, circleSpawnChance, rectangleSpawnChance, hexagonSpawnChance, maximumShapes, spawnSpeed, music;
     float size, shapeSize, density, rotation;
     float circleSpeed, rectangleSpeed, hexagonSpeed;
     String newType, type;
@@ -45,11 +46,14 @@ public class MainActivity extends Activity {
     List<MyView.Shape> shapes, oldShapes;
     Random rand;
     Paint paint;
+    MediaPlayer mpPlayer;
 
-//    //disables the default android backbutton
-//    @Override
-//    public void onBackPressed() {
-//    }
+    //disables the default android backbutton
+    @Override
+    public void onBackPressed() {
+        mpPlayer.release();
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +101,10 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         //Used to have the action bar of the application so it isn't overlayed on the screen during a fullscreen activity.
 //        getSupportActionBar().hide();
+
+        mpPlayer = MediaPlayer.create(this, musicSwitch(levelNumber));
+        mpPlayer.start();
+
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(new MyView(this));
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -118,6 +126,24 @@ public class MainActivity extends Activity {
             return null;
         }
         return json;
+    }
+
+    private int musicSwitch(int i) {
+        switch (i) {
+            case 1:  music = R.raw.kickshock;
+                break;
+            case 2:  music = R.raw.bitdungeonboss;
+                break;
+            case 3:  music = R.raw.kickshock;
+                break;
+            case 4:  music = R.raw.bitdungeonboss;
+                break;
+            case 5:  music = R.raw.kickshock;
+                break;
+            default: music = R.raw.bitdungeonboss;;
+                break;
+        }
+        return music;
     }
 
 //    @Override
@@ -326,6 +352,7 @@ public class MainActivity extends Activity {
                     //If life reaches zero, the player will be game over
                     if (life <= 0) {
 //                        shapes.removeAll(shapes);
+                        mpPlayer.release();
                         Intent activity = new Intent(MainActivity.this, GameOver.class);
                         activity.putExtra("level", levelNumber);
                         activity.putExtra("score", score);
@@ -381,6 +408,7 @@ public class MainActivity extends Activity {
 
 
                 if (gameTimer <= 0) {
+                    mpPlayer.release();
                     Intent activity = new Intent(MainActivity.this, LvlWon.class);
                     activity.putExtra("level", levelNumber);
                     activity.putExtra("score", score);
