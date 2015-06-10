@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -49,18 +51,20 @@ public class LvlSelectActivity extends Activity {
         catch (JSONException | IOException e) {
             e.printStackTrace();
         }
+        switchLvlButton1();
+        switchLvlButton2();
         backButton();
     }
 
     private void setupButtons() throws IOException, JSONException {
-        for (i = 1; i < 7; i++) {
+        for (i = 1; i < 13; i++) {
             scoreKey = "level" + i + "score";
             unlockKey = "level" + i + "unlock";
             levelImage = "level" + i + "Button";
 
             prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
 
-            if ((prefs.getBoolean(unlockKey, false) || i == 1) && i < 6) {
+            if ((prefs.getBoolean(unlockKey, false) || i == 1) && i < 12) {
                 levelScore = "level" + i + "Score";
                 levelNumber = "levelText" + i;
 
@@ -119,6 +123,24 @@ public class LvlSelectActivity extends Activity {
                             case R.id.level6Button:
                                 activity.putExtra("level", 5);
                                 break;
+                            case R.id.level7Button:
+                                activity.putExtra("level", 6);
+                                break;
+                            case R.id.level8Button:
+                                activity.putExtra("level", 7);
+                                break;
+                            case R.id.level9Button:
+                                activity.putExtra("level", 8);
+                                break;
+                            case R.id.level10Button:
+                                activity.putExtra("level", 9);
+                                break;
+                            case R.id.level11Button:
+                                activity.putExtra("level", 10);
+                                break;
+                            case R.id.level12Button:
+                                activity.putExtra("level", 11);
+                                break;
                         }
                         startActivity(activity);
                         finish();
@@ -133,6 +155,53 @@ public class LvlSelectActivity extends Activity {
                 tLevelImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
             }
         }
+    }
+    private void switchLvlButton1() {
+        Button button = (Button) findViewById(R.id.switchlvlbutton1);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final GridLayout grid1 = (GridLayout) findViewById(R.id.gridLvlSelect1);
+                final GridLayout grid2 = (GridLayout) findViewById(R.id.gridLvlSelect2);
+
+
+
+
+                grid2.animate().setDuration(0
+                ).scaleX(1).scaleY(1).translationX(0).translationY(0).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        grid2.setTranslationX(+1 * grid2.getWidth());
+                        grid2.animate().setDuration(500).translationX(0).alpha(1);
+                    }
+                });
+                grid1.setVisibility(View.INVISIBLE);
+                grid2.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+    private void switchLvlButton2() {
+        Button button = (Button) findViewById(R.id.switchlvlbutton2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final GridLayout grid1 = (GridLayout) findViewById(R.id.gridLvlSelect1);
+                final GridLayout grid2 = (GridLayout) findViewById(R.id.gridLvlSelect2);
+
+
+
+                grid1.animate().setDuration(0
+                ).scaleX(1).scaleY(1).translationX(0).translationY(0).withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        grid1.setTranslationX(-1 * grid1.getWidth());
+                        grid1.animate().setDuration(500).translationX(0).alpha(1);
+                    }
+                });
+                grid2.setVisibility(View.INVISIBLE);
+                grid1.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     private void backButton() {
