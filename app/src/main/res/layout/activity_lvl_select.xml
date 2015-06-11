@@ -255,11 +255,10 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"/>
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=">>"
+        <ImageButton
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:background="@drawable/slideright"
             android:id="@+id/switchlvlbutton1"
             android:layout_below="@+id/gridLvlSelect1"
             android:layout_alignParentLeft="true"
@@ -518,11 +517,11 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"/>
 
-        <Button
+        <ImageButton
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="left"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:background="@drawable/slideleft"
             android:id="@+id/switchlvlbutton2"
             android:layout_below="@+id/gridLvlSelect2"
             android:layout_alignParentLeft="true"

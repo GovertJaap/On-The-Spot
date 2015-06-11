@@ -152,7 +152,7 @@ public class LvlSelectActivity extends Activity {
         }
     }
     private void switchLvlButton1() {
-        Button button = (Button) findViewById(R.id.switchlvlbutton1);
+        ImageButton button = (ImageButton) findViewById(R.id.switchlvlbutton1);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -163,35 +163,32 @@ public class LvlSelectActivity extends Activity {
                 ).scaleX(1).scaleY(1).translationX(0).translationY(0).withEndAction(new Runnable() {
                     @Override
                     public void run() {
+                        grid1.setVisibility(View.INVISIBLE);
+                        grid2.setVisibility(View.VISIBLE);
                         grid2.setTranslationX(+1 * grid2.getWidth());
                         grid2.animate().setDuration(500).translationX(0).alpha(1);
                     }
                 });
-                grid1.setVisibility(View.INVISIBLE);
-                grid2.setVisibility(View.VISIBLE);
             }
         });
     }
     private void switchLvlButton2() {
-        Button button = (Button) findViewById(R.id.switchlvlbutton2);
+        ImageButton button = (ImageButton) findViewById(R.id.switchlvlbutton2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final GridLayout grid1 = (GridLayout) findViewById(R.id.gridLvlSelect1);
                 final GridLayout grid2 = (GridLayout) findViewById(R.id.gridLvlSelect2);
-
-
-
                 grid1.animate().setDuration(0
                 ).scaleX(1).scaleY(1).translationX(0).translationY(0).withEndAction(new Runnable() {
                     @Override
                     public void run() {
+                        grid2.setVisibility(View.INVISIBLE);
+                        grid1.setVisibility(View.VISIBLE);
                         grid1.setTranslationX(-1 * grid1.getWidth());
                         grid1.animate().setDuration(500).translationX(0).alpha(1);
                     }
                 });
-                grid2.setVisibility(View.INVISIBLE);
-                grid1.setVisibility(View.VISIBLE);
             }
         });
     }
