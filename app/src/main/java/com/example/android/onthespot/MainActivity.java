@@ -11,6 +11,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,6 +45,7 @@ public class MainActivity extends Activity {
     Paint paint;
     MediaPlayer mpPlayer;
     static MainActivity mainActivity;
+    Vibrator v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,7 @@ public class MainActivity extends Activity {
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(new MyView(this));
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
     }
 
 
@@ -125,7 +128,7 @@ public class MainActivity extends Activity {
 
                 //This code makes sure that there won't spawn any more shapes than the maximum number allowed.
                 //Also checks the variable lastSpawn so that shapes don't spawn too fast after each other.
-                if (shapes.size() <= maximumShapes && lastSpawn > randomSpawnTime) {
+                if (shapes.size() <= maximumShapes && lastSpawn > randomSpawnTime || gameTimer == 3590) {
                     //Get a new random x and y coordinate used to spawn the new shape.
                     //The limits for this depend on the density and pixel height/width of the screen.
                     newX = (int) (rand.nextInt(getWidth() - Math.round(120 * density)) + (60 * density));
@@ -288,6 +291,7 @@ public class MainActivity extends Activity {
                         shapes.remove(i);
                         i--;
                         life--;
+                        v.vibrate(200);
                     }
 
                     else {

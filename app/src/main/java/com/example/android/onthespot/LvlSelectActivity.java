@@ -57,7 +57,7 @@ public class LvlSelectActivity extends Activity {
 
             prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
 
-            if ((prefs.getBoolean(unlockKey, false) || i == 1) && i < 13) {
+            if ((prefs.getBoolean(unlockKey, false) || i == 1)) {
                 levelScore = "level" + i + "Score";
                 levelNumber = "levelText" + i;
 
