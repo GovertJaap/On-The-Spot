@@ -161,12 +161,17 @@ public class LvlWon extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                musicClass.mpPlayer.release();
-                musicClass.playing = false;
-                Intent activity = new Intent(LvlWon.this, MainActivity.class);
-                activity.putExtra("level", levelNumber);
-                startActivity(activity);
-                finish();
+                if (levelNumber == 12) {
+                    Toast.makeText(LvlWon.this, "Sorry, this was the last level!", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    musicClass.mpPlayer.release();
+                    musicClass.playing = false;
+                    Intent activity = new Intent(LvlWon.this, MainActivity.class);
+                    activity.putExtra("level", levelNumber);
+                    startActivity(activity);
+                    finish();
+                }
             }
         });
     }

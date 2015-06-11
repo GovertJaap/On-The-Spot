@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -46,6 +48,7 @@ public class MainActivity extends Activity {
     MediaPlayer mpPlayer;
     static MainActivity mainActivity;
     Vibrator v;
+    Bitmap livesBitmap, timeBitmap, pauseBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,10 @@ public class MainActivity extends Activity {
         rand = new Random();
         paint = new Paint();
         mainActivity = this;
+        livesBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.heart);
+        timeBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.stopwatch);
+        pauseBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.pause);
+
 
         try {
             JSONObject obj = new JSONObject(loadJSONFromAsset());
@@ -122,6 +129,9 @@ public class MainActivity extends Activity {
                 //This cannot be done during OnCreate since the display is not initialized at that point.
                 if (density == 0) {
                     density = getResources().getDisplayMetrics().density;
+                    livesBitmap = Bitmap.createScaledBitmap(livesBitmap, (int) (78.8 * density), (int) (64.8 * density), true);
+                    timeBitmap = Bitmap.createScaledBitmap(timeBitmap, (int) (54.8 * density), (int) (64.8 * density), true);
+                    pauseBitmap = Bitmap.createScaledBitmap(pauseBitmap, (int) (64.8 * density), (int) (64.8 * density), true);
                 }
 
                 randomSpawnTime = rand.nextInt((int) (spawnSpeed * 1.3)) + (int) (spawnSpeed / 1.5);
@@ -132,7 +142,7 @@ public class MainActivity extends Activity {
                     //Get a new random x and y coordinate used to spawn the new shape.
                     //The limits for this depend on the density and pixel height/width of the screen.
                     newX = (int) (rand.nextInt(getWidth() - Math.round(120 * density)) + (60 * density));
-                    newY = (int) (rand.nextInt(getHeight() - Math.round(160 * density)) + (100 * density));
+                    newY = (int) (rand.nextInt(getHeight() - Math.round(210 * density)) + (150 * density));
                     rotation = rand.nextInt(360);
 
                     //Get a random number between 0 and 100 used for the chance calculation of what shape will spawn.
@@ -317,22 +327,42 @@ public class MainActivity extends Activity {
                                 i--;
                                 justTouched = false;
                             }
+
+                            if (xTouch > (getWidth() - (getWidth() / 4.8)) &&
+                                    xTouch < (getWidth() - (getWidth() / 4.8) + (64.8 * density)) &&
+                                    yTouch > (5 * density) &&
+                                    yTouch < (69.8 * density)) {
+                                mpPlayer.release();
+                                Intent activity = new Intent(MainActivity.this, Pause.class);
+                                activity.putExtra("level", levelNumber);
+                                startActivity(activity);
+                            }
                         }
                     }
                 }
 
-                /****** Code for drawing debug text ********/
-                paint.setColor(Color.BLACK);
-                paint.setTextSize(24 * density);
+                paint.setColor(Color.parseColor("#F8ECE0"));
+                paint.setStyle(Paint.Style.FILL);
+                canvas.drawRect(0, 0, getWidth(), (int) (density * 75), paint);
+                paint.setStyle(Paint.Style.STROKE);
+                paint.setStrokeWidth(5 * density);
+                paint.setColor(Color.DKGRAY);
+                canvas.drawRect(-5 * density, -5 * density, getWidth() + 5 * density, (int) (density * 77), paint);
+                canvas.drawBitmap(livesBitmap, (int) (getWidth() / 36), 5 * density, null);
+                canvas.drawBitmap(timeBitmap, (int) (getWidth() / 3.27f), 5 * density, null);
+                canvas.drawBitmap(pauseBitmap, (int) (getWidth() - (getWidth() / 4.8)), 5 * density, null);
+
+                paint.setColor(Color.WHITE);
+                paint.setTextSize(34 * density);
                 paint.setStrokeWidth(0);
                 paint.setTextAlign(Paint.Align.CENTER);
-                canvas.drawText("Lives: ", getWidth() / 7, 25 * density, paint);
-                canvas.drawText("" + life, getWidth() / 7, 50 * density, paint);
-                canvas.drawText("Score: ", getWidth() / 2.65f, 25 * density, paint);
-                canvas.drawText("" + score, getWidth() / 2.65f, 50 * density, paint);
-                canvas.drawText("Time Left: ", getWidth() / 1.55f, 25 * density, paint);
-                canvas.drawText("" + gameTimer / 60, getWidth() / 1.55f, 50 * density, paint);
-
+                canvas.drawText("" + life, (int) (getWidth() / 36 + 39.4f * density), (int) (53.9f * density), paint);
+                paint.setColor(Color.BLACK);
+                paint.setTextSize(26 * density);
+                canvas.drawText("" + gameTimer / 60, (int) (getWidth() / 3.27f + 27.4f * density), (int) (52.4f * density), paint);
+                canvas.drawText("Score: ", (int) (getWidth() / 1.57f), 31 * density, paint);
+                paint.setTextSize(30 * density);
+                canvas.drawText("" + score, (int) (getWidth() / 1.60f), 62 * density, paint);
 
                 if (gameTimer <= 0) {
                     mpPlayer.release();
