@@ -12,11 +12,11 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Play"
+        android:text="Singleplayer"
         android:id="@+id/playButton"
         android:clickable="true"
         android:layout_gravity="center"
-        android:layout_above="@+id/leaderboardButton"
+        android:layout_above="@+id/multiplayerButton"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -25,7 +25,7 @@
         android:text="Leaderboards"
         android:id="@+id/leaderboardButton"
         android:clickable="true"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/multiplayerButton"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -35,8 +35,7 @@
         android:id="@+id/optionsButton"
         android:clickable="true"
         android:layout_below="@+id/leaderboardButton"
-        android:layout_alignLeft="@+id/playButton"
-        android:layout_alignStart="@+id/playButton" />
+        android:layout_centerHorizontal="true" />
 
     <ImageView
         android:layout_width="307dp"
@@ -45,6 +44,14 @@
         android:background="@drawable/logo"
         android:layout_marginBottom="70dp"
         android:layout_above="@+id/playButton"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Multiplayer"
+        android:id="@+id/multiplayerButton"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
