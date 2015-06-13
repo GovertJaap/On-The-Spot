@@ -83,13 +83,14 @@ public class MenuActivity extends Activity {
             musicClass.playing = true;
         }
 
-        setupPlayButton();
+        singlePlayButton();
+        multiplayButton();
         scoreButton();
         optionsButton();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
-    private void setupPlayButton() {
+    private void singlePlayButton() {
         Button playButton = (Button) findViewById(R.id.playButton);
         playButton.setOnClickListener(new View.OnClickListener() {
             ;
@@ -98,6 +99,21 @@ public class MenuActivity extends Activity {
             public void onClick(View v) {
                 transition = true;
                 Intent activity = new Intent(MenuActivity.this, LvlSelectActivity.class);
+                startActivity(activity);
+            }
+        });
+    }
+
+
+    private void multiplayButton() {
+        Button playButton = (Button) findViewById(R.id.multiplayerButton);
+        playButton.setOnClickListener(new View.OnClickListener() {
+            ;
+
+            @Override
+            public void onClick(View v) {
+                Intent activity = new Intent(MenuActivity.this, MainActivity.class);
+                activity.putExtra("level", 12);
                 startActivity(activity);
             }
         });
