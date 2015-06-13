@@ -550,10 +550,7 @@
         android:id="@+id/backButtonLvlSelect"
         android:background="@drawable/undo"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/gridLvlSelect1"
-        android:layout_alignEnd="@+id/gridLvlSelect1"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
