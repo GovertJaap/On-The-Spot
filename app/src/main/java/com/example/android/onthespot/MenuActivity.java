@@ -42,8 +42,8 @@ public class MenuActivity extends Activity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MenuActivity.this);
         builder.setMessage("Are you sure you want to quit?")
-        .setNegativeButton("Yes, siree!", dialogClickListener)
-        .setPositiveButton("No way out", dialogClickListener).show();
+                .setNegativeButton("Yes, siree!", dialogClickListener)
+                .setPositiveButton("No way out", dialogClickListener).show();
     }
 
     @Override
@@ -60,13 +60,12 @@ public class MenuActivity extends Activity {
 
     @Override
     protected void onResume() {
-        if (musicClass.exit == true && musicClass.musicOn == true) {
+        if (musicClass.exit == true && musicClass.musicOn == true && musicClass.playing == false) {
             musicClass.mpPlayer.start();
-            musicClass.mpPlayer.seekTo(musicClass.length);
             musicClass.playing = true;
-            musicClass.exit = false;
         }
 
+        musicClass.exit = false;
         transition = false;
         super.onResume();
     }
@@ -112,6 +111,12 @@ public class MenuActivity extends Activity {
 
             @Override
             public void onClick(View v) {
+                if (musicClass.musicOn == true) {
+                    musicClass.mpPlayer.release();
+                    musicClass.playing = false;
+                }
+
+                transition = true;
                 Intent activity = new Intent(MenuActivity.this, MainActivity.class);
                 activity.putExtra("level", 12);
                 startActivity(activity);

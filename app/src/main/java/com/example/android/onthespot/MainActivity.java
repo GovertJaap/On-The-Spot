@@ -42,13 +42,9 @@ public class MainActivity extends Activity {
     float circleSpeed, rectangleSpeed, hexagonSpeed;
     String newType, type;
     String backgroundColor, circleColor, rectangleColor, hexagonColor, circleBorderColor, rectangleBorderColor, hexagonBorderColor;
-<<<<<<< HEAD
     boolean justTouched, transition;
     static boolean backFromPause;
-=======
     String circleColor2, rectangleColor2, hexagonColor2;
-    boolean justTouched;
->>>>>>> origin/master
     List<MyView.Shape> shapes, oldShapes;
     Random rand;
     Paint paint;
@@ -134,8 +130,9 @@ public class MainActivity extends Activity {
     protected void onStop() {
         if (transition != true && musicClass.mpPlayer != null && musicClass.musicOn == true) {
             musicClass.mpPlayer.release();
-            musicClass.mpPlayer = null;
+            musicClass.exit = true;
             musicClass.playing = false;
+            musicClass.mpPlayer = musicClass.mpPlayer.create(this, R.raw.menu);
             finish();
         }
 
