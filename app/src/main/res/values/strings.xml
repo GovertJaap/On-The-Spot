@@ -18,4 +18,5 @@
     <string name="title_activity_options">Options</string>
     <string name="title_activity_pause">Pause</string>
     <string name="title_activity_choose_leaderboard">chooseLeaderboardActivity</string>
+    <string name="title_activity_leaderboards">LeaderboardsActivity</string>
 </resources>

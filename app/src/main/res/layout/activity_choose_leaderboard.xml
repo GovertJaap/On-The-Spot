@@ -19,7 +19,7 @@
         <ImageButton
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageButton"
+            android:id="@+id/leaderboardselect1"
             android:layout_row="0"
             android:layout_column="0"
             android:background="@drawable/plainbutton"
@@ -40,7 +40,7 @@
         <ImageButton
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageButton2"
+            android:id="@+id/leaderboardselect2"
             android:layout_row="0"
             android:layout_column="1"
             android:background="@drawable/plainbutton"
@@ -60,7 +60,7 @@
         <ImageButton
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageButton3"
+            android:id="@+id/leaderboardselect3"
             android:layout_row="0"
             android:layout_column="2"
             android:background="@drawable/plainbutton"
@@ -81,7 +81,7 @@
         <ImageButton
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageButton4"
+            android:id="@+id/leaderboardselect4"
             android:layout_row="1"
             android:layout_column="0"
             android:background="@drawable/plainbutton"
@@ -102,7 +102,7 @@
         <ImageButton
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageButton5"
+            android:id="@+id/leaderboardselect5"
             android:layout_row="1"
             android:layout_column="1"
             android:background="@drawable/plainbutton"
@@ -122,7 +122,7 @@
         <ImageButton
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageButton6"
+            android:id="@+id/leaderboardselect6"
             android:layout_row="1"
             android:layout_column="2"
             android:background="@drawable/plainbutton"
@@ -142,7 +142,7 @@
         <ImageButton
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageButton7"
+            android:id="@+id/leaderboardselect7"
             android:layout_row="2"
             android:layout_column="0"
             android:background="@drawable/plainbutton"
@@ -162,7 +162,7 @@
         <ImageButton
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageButton8"
+            android:id="@+id/leaderboardselect8"
             android:background="@drawable/plainbutton"
             android:layout_row="2"
             android:layout_column="1"
@@ -182,7 +182,7 @@
         <ImageButton
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageButton9"
+            android:id="@+id/leaderboardselect9"
             android:layout_row="2"
             android:layout_column="2"
             android:background="@drawable/plainbutton"
@@ -203,7 +203,7 @@
         <ImageButton
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageButton10"
+            android:id="@+id/leaderboardselect10"
             android:layout_row="3"
             android:layout_column="0"
             android:background="@drawable/plainbutton"
@@ -223,7 +223,7 @@
         <ImageButton
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageButton11"
+            android:id="@+id/leaderboardselect11"
             android:layout_row="3"
             android:layout_column="1"
             android:background="@drawable/plainbutton"
@@ -243,7 +243,7 @@
         <ImageButton
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/imageButton12"
+            android:id="@+id/leaderboardselect12"
             android:layout_row="3"
             android:layout_column="2"
             android:background="@drawable/plainbutton"

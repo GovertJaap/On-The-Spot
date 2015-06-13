@@ -81,6 +81,13 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_choose_leaderboard"
             android:launchMode="singleInstance"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".LeaderboardsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/title_activity_leaderboards"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait">
         </activity>
     </application>
