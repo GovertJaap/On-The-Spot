@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 public class MenuActivity extends Activity {
 
     FullMenu musicClass = new FullMenu();
+    boolean transition;
 
     @Override
     public void onBackPressed() {
@@ -23,7 +26,11 @@ public class MenuActivity extends Activity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case DialogInterface.BUTTON_NEGATIVE:
-                        musicClass.mpPlayer.release();
+                        if (musicClass.musicOn == true) {
+                            musicClass.mpPlayer.release();
+                            musicClass.playing = false;
+                        }
+                        transition = true;
                         finish();
                         break;
 
@@ -40,23 +47,41 @@ public class MenuActivity extends Activity {
     }
 
     @Override
+    protected void onPause() {
+        if (musicClass.mpPlayer != null && transition != true && musicClass.musicOn == true) {
+            musicClass.mpPlayer.pause();
+            musicClass.length = musicClass.mpPlayer.getCurrentPosition();
+            musicClass.playing = false;
+            musicClass.exit = true;
+        }
+
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        if (musicClass.exit == true && musicClass.musicOn == true) {
+            musicClass.mpPlayer.start();
+            musicClass.mpPlayer.seekTo(musicClass.length);
+            musicClass.playing = true;
+            musicClass.exit = false;
+        }
+
+        transition = false;
+        super.onResume();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_menu);
 
-        if (musicClass.playing == false) {
+        if (musicClass.playing == false && musicClass.musicOn == true) {
             musicClass.mpPlayer = musicClass.createMusic().create(this, R.raw.menu);
             musicClass.mpPlayer.start();
             musicClass.playing = true;
-        } else { }
-
-//        boolean playing = getIntent().getExtras().getBoolean("playing");
-//        if (playing == false) {
-//            mpPlayer = MediaPlayer.create(this, R.raw.menu);
-//            mpPlayer.start();
-//        } else { mpPlayer.release(); }
-//        playing = true;
+        }
 
         setupPlayButton();
         scoreButton();
@@ -71,6 +96,7 @@ public class MenuActivity extends Activity {
 
             @Override
             public void onClick(View v) {
+                transition = true;
                 Intent activity = new Intent(MenuActivity.this, LvlSelectActivity.class);
                 startActivity(activity);
             }
@@ -84,6 +110,7 @@ public class MenuActivity extends Activity {
 
             @Override
             public void onClick(View v) {
+                transition = true;
                 Toast.makeText(MenuActivity.this, "Leaderboards are not available.", Toast.LENGTH_LONG).show();
             }
         });
@@ -96,6 +123,7 @@ public class MenuActivity extends Activity {
 
             @Override
             public void onClick(View v) {
+                transition = true;
                 Intent activity = new Intent(MenuActivity.this, Options.class);
                 startActivity(activity);
             }

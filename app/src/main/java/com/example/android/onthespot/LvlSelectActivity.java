@@ -23,8 +23,15 @@ import java.io.InputStream;
 public class LvlSelectActivity extends Activity {
     String scoreKey, unlockKey, levelScore, levelNumber, levelImage;
     int i;
+    boolean transition;
     SharedPreferences prefs;
     FullMenu musicClass = new FullMenu();
+
+    @Override
+    public void onBackPressed() {
+        transition = true;
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,21 +39,46 @@ public class LvlSelectActivity extends Activity {
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_lvl_select);
 
-        if (musicClass.playing == false) {
-            musicClass.mpPlayer = musicClass.createMusic().create(this, R.raw.menu);
-            musicClass.mpPlayer.start();
-            musicClass.playing = true;
-        } else { }
-
         try {
             setupButtons();
         }
         catch (JSONException | IOException e) {
             e.printStackTrace();
         }
+
+        if (musicClass.playing == false && musicClass.mpPlayer == null && musicClass.musicOn == true) {
+            musicClass.mpPlayer = musicClass.createMusic().create(this, R.raw.menu);
+            musicClass.mpPlayer.start();
+            musicClass.playing = true;
+        } else if (musicClass.playing == false && musicClass.mpPlayer != null && musicClass.musicOn == true) {
+            musicClass.mpPlayer.start();
+            musicClass.mpPlayer.seekTo(musicClass.length);
+            musicClass.playing = true;
+        }
+
         switchLvlButton1();
         switchLvlButton2();
         backButton();
+    }
+
+    @Override
+    protected void onPause() {
+        if (musicClass.mpPlayer != null && transition != true && musicClass.musicOn == true) {
+            musicClass.mpPlayer.pause();
+            musicClass.length = musicClass.mpPlayer.getCurrentPosition();
+            musicClass.playing = false;
+            musicClass.exit = true;
+        }
+
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+
+
+        transition = false;
+        super.onResume();
     }
 
     private void setupButtons() throws IOException, JSONException {
@@ -96,8 +128,12 @@ public class LvlSelectActivity extends Activity {
                 tLevelImage.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        musicClass.mpPlayer.release();
-                        musicClass.playing = false;
+                        if (musicClass.musicOn == true) {
+                            musicClass.mpPlayer.release();
+                            musicClass.playing = false;
+                        }
+
+                        transition = true;
                         Intent activity = new Intent(LvlSelectActivity.this, MainActivity.class);
                         switch(v.getId()) {
                             case R.id.level1Button:
@@ -198,6 +234,7 @@ public class LvlSelectActivity extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                transition = true;
                 finish();
             }
         });

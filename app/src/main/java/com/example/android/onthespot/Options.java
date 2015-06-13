@@ -2,6 +2,7 @@ package com.example.android.onthespot;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
@@ -19,11 +20,18 @@ import android.widget.Toast;
 import com.example.android.onthespot.R;
 
 public class Options extends Activity {
-    SharedPreferences prefs;
     SharedPreferences.Editor editor;
     String scoreKey;
     String unlockKey;
     FullMenu musicClass = new FullMenu();
+    boolean transition = false;
+    SharedPreferences prefs;
+
+    @Override
+    public void onBackPressed() {
+        transition = true;
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +42,55 @@ public class Options extends Activity {
         prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
         editor = prefs.edit();
 
-        if (musicClass.playing == false) {
-            musicClass.mpPlayer = musicClass.createMusic().create(this, R.raw.menu);
-            musicClass.mpPlayer.start();
-            musicClass.playing = true;
-        } else { }
-
         resetScores();
         resetUnlocks();
         unlockAllLevels();
         backButton();
+        musicButton();
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    @Override
+    protected void onPause() {
+        if (musicClass.mpPlayer != null && transition != true && musicClass.musicOn == true) {
+            musicClass.mpPlayer.pause();
+            musicClass.length = musicClass.mpPlayer.getCurrentPosition();
+            musicClass.playing = false;
+            musicClass.exit = true;
+        }
+
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        if (musicClass.musicOn == false && musicClass.playing == false)
+        musicClass.mpPlayer = musicClass.mpPlayer.create(this, R.raw.menu);
+
+        transition = false;
+        super.onResume();
+    }
+
+    private void updateMusicPref() {
+        prefs = this.getSharedPreferences("MusicPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor  = prefs.edit();
+        musicClass.musicOn = prefs.getBoolean("music on: ", musicClass.musicOn);
+
+        if (musicClass.musicOn == true) {
+            musicClass.mpPlayer.pause();
+            musicClass.musicOn = false;
+            musicClass.playing = false;
+            Toast.makeText(Options.this, "Music is off.", Toast.LENGTH_LONG).show();
+
+        } else {
+            musicClass.mpPlayer.start();
+            musicClass.musicOn = true;
+            musicClass.playing = true;
+            Toast.makeText(Options.this, "Music is on. Cheers.", Toast.LENGTH_LONG).show();
+        }
+        editor.putBoolean("music on: ", musicClass.musicOn);
+        editor.commit();
     }
 
     private void resetScores() {
@@ -100,7 +145,18 @@ public class Options extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                transition = true;
                 finish();
+            }
+        });
+    }
+
+    private void musicButton() {
+        Button button = (Button) findViewById(R.id.musicChange);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateMusicPref();
             }
         });
     }

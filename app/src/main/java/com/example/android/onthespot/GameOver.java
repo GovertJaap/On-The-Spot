@@ -27,20 +27,20 @@ public class GameOver extends Activity {
     int score, highscore, levelNumber;
     String scoreKey;
     SharedPreferences prefs;
-    MediaPlayer local;
     FullMenu musicClass = new FullMenu();
+    boolean transition = false;
+    boolean goToMenu;
+
+    //disables the default android backbutton
+    @Override
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_game_over);
-
-        if (musicClass.playing == false) {
-            local = musicClass.createMusic().create(this, R.raw.menu);
-            local.start();
-            musicClass.playing = true;
-        } else { }
 
         updateScore();
         try {
@@ -49,10 +49,28 @@ public class GameOver extends Activity {
         catch (JSONException | IOException e) {
             e.printStackTrace();
         }
+
         MenuButton();
         ScoreButton();
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    @Override
+    protected void onStop() {
+        if (goToMenu == true && musicClass.musicOn == true) {
+            musicClass.mpPlayer = musicClass.mpPlayer.create(this, R.raw.menu);
+            musicClass.mpPlayer.start();
+            musicClass.playing = true;
+        }
+
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        transition = false;
+        super.onResume();
     }
 
     private void updateScore() {
@@ -111,6 +129,7 @@ public class GameOver extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                goToMenu = true;
                 finish();
             }
         });
@@ -129,8 +148,7 @@ public class GameOver extends Activity {
     @Override
     public boolean onTouchEvent(MotionEvent e){
         if (e.getAction() == MotionEvent.ACTION_DOWN) {
-            local.release();
-            musicClass.playing = false;
+            transition = true;
             Intent activity = new Intent(GameOver.this, MainActivity.class);
             activity.putExtra("level", levelNumber - 1);
             startActivity(activity);

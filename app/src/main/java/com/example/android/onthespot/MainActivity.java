@@ -19,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,14 +42,15 @@ public class MainActivity extends Activity {
     float circleSpeed, rectangleSpeed, hexagonSpeed;
     String newType, type;
     String backgroundColor, circleColor, rectangleColor, hexagonColor, circleBorderColor, rectangleBorderColor, hexagonBorderColor;
-    boolean justTouched;
+    boolean justTouched, transition;
+    static boolean backFromPause;
     List<MyView.Shape> shapes, oldShapes;
     Random rand;
     Paint paint;
-    MediaPlayer mpPlayer;
     static MainActivity mainActivity;
     Vibrator v;
     Bitmap livesBitmap, timeBitmap, pauseBitmap;
+    FullMenu musicClass = new FullMenu();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,7 @@ public class MainActivity extends Activity {
         livesBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.heart);
         timeBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.stopwatch);
         pauseBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.pause);
+        backFromPause = false;
 
 
         try {
@@ -101,13 +104,34 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         //Used to have the action bar of the application so it isn't overlayed on the screen during a fullscreen activity.
 
-        mpPlayer = MediaPlayer.create(this, musicSwitch(levelNumber));
-        mpPlayer.start();
+        if (musicClass.musicOn == true) {
+            musicClass.mpPlayer = musicClass.mpPlayer.create(this, musicSwitch(levelNumber));
+            musicClass.mpPlayer.start();
+        }
 
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(new MyView(this));
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+    }
+
+    @Override
+    protected void onStop() {
+        if (transition != true && musicClass.mpPlayer != null && musicClass.musicOn == true) {
+            musicClass.mpPlayer.release();
+            musicClass.mpPlayer = null;
+            musicClass.playing = false;
+            finish();
+        }
+
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+
+        transition = false;
+        super.onResume();
     }
 
 
@@ -288,12 +312,23 @@ public class MainActivity extends Activity {
                     //If life reaches zero, the player will be game over
                     if (life <= 0) {
 //                        shapes.removeAll(shapes);
-                        mpPlayer.release();
+                        if (musicClass.musicOn == true) {
+                            musicClass.mpPlayer.release();
+                            musicClass.playing = false;
+                        }
+                        transition = true;
                         Intent activity = new Intent(MainActivity.this, GameOver.class);
                         activity.putExtra("level", levelNumber);
                         activity.putExtra("score", score);
                         startActivity(activity);
                         finish();
+                    }
+
+                    if (musicClass.playing == false && musicClass.mpPlayer != null && musicClass.musicOn == true && backFromPause == true) {
+                        musicClass.mpPlayer.seekTo(musicClass.length);
+                        musicClass.mpPlayer.start();
+                        musicClass.playing = true;
+                        backFromPause = false;
                     }
 
                     //If the user has not touched the shape, remove it from our list and decrement i by 1.
@@ -332,7 +367,13 @@ public class MainActivity extends Activity {
                                     xTouch < (getWidth() - (getWidth() / 4.8) + (64.8 * density)) &&
                                     yTouch > (5 * density) &&
                                     yTouch < (69.8 * density)) {
-                                mpPlayer.release();
+                                if (musicClass.musicOn == true) {
+                                    musicClass.mpPlayer.pause();
+                                    musicClass.playing = false;
+                                    musicClass.length = musicClass.mpPlayer.getCurrentPosition();
+                                }
+
+                                transition = true;
                                 Intent activity = new Intent(MainActivity.this, Pause.class);
                                 activity.putExtra("level", levelNumber);
                                 startActivity(activity);
@@ -365,7 +406,12 @@ public class MainActivity extends Activity {
                 canvas.drawText("" + score, (int) (getWidth() / 1.60f), 62 * density, paint);
 
                 if (gameTimer <= 0) {
-                    mpPlayer.release();
+                    if (musicClass.musicOn == true) {
+                        musicClass.mpPlayer.release();
+                        musicClass.playing = false;
+                    }
+
+                    transition = true;
                     Intent activity = new Intent(MainActivity.this, LvlWon.class);
                     activity.putExtra("level", levelNumber);
                     activity.putExtra("score", score);
@@ -608,7 +654,13 @@ public class MainActivity extends Activity {
     //disables the default android backbutton
     @Override
     public void onBackPressed() {
-        mpPlayer.release();
+        if (musicClass.musicOn == true) {
+            musicClass.mpPlayer.pause();
+            musicClass.playing = false;
+            musicClass.length = musicClass.mpPlayer.getCurrentPosition();
+        }
+
+        transition = true;
         Intent activity = new Intent(MainActivity.this, Pause.class);
         activity.putExtra("level", levelNumber);
         startActivity(activity);

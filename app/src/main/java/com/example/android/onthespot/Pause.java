@@ -10,6 +10,15 @@ import android.widget.Button;
 
 public class Pause extends Activity {
 
+    FullMenu musicClass = new FullMenu();
+    boolean goToMenu = false;
+
+    @Override
+    public void onBackPressed() {
+        MainActivity.backFromPause = true;
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,12 +32,31 @@ public class Pause extends Activity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
+    @Override
+    protected void onStop() {
+        if (goToMenu == true && musicClass.musicOn == true) {
+            musicClass.mpPlayer = musicClass.mpPlayer.create(this, R.raw.menu);
+            musicClass.mpPlayer.start();
+            musicClass.playing = true;
+        }
+
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+    }
+
     private void continueButton() {
         Button button = (Button) findViewById(R.id.pauseContinue);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.backFromPause = true;
                 finish();
+                MainActivity.getInstance().transition = true;
             }
         });
     }
@@ -51,6 +79,8 @@ public class Pause extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                musicClass.mpPlayer.release();
+                goToMenu = true;
                 Intent activity = new Intent(Pause.this, MenuActivity.class);
                 MainActivity.getInstance().finish();
                 startActivity(activity);

@@ -31,23 +31,19 @@ public class LvlWon extends Activity {
     int score, highscore, levelNumber;
     String scoreKey;
     FullMenu musicClass = new FullMenu();
+    boolean transition = false;
+    boolean goToMenu = false;
 
     //disables the default android backbutton
-//    @Override
-//    public void onBackPressed() {
-//    }
+    @Override
+    public void onBackPressed() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_lvl_won);
-
-        if (musicClass.playing == false) {
-            musicClass.mpPlayer = musicClass.createMusic().create(this, R.raw.menu);
-            musicClass.mpPlayer.start();
-            musicClass.playing = true;
-        } else { }
 
         updateScore();
         try {
@@ -56,11 +52,29 @@ public class LvlWon extends Activity {
         catch (JSONException | IOException e) {
             e.printStackTrace();
         }
+
         MenuButton();
         ScoreButton();
         NextButton();
         RestartButton();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    @Override
+    protected void onStop() {
+        if (goToMenu == true && musicClass.musicOn == true) {
+            musicClass.mpPlayer = musicClass.mpPlayer.create(this, R.raw.menu);
+            musicClass.mpPlayer.start();
+            musicClass.playing = true;
+        }
+
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume() {
+        transition = false;
+        super.onResume();
     }
 
     private void updateScore() {
@@ -139,6 +153,8 @@ public class LvlWon extends Activity {
             public void onClick(View v) {
 //                Intent activity = new Intent(LvlWon.this, MenuActivity.class);
 //                startActivity(activity);
+                goToMenu = true;
+                transition = true;
                 finish();
             }
         });
@@ -165,8 +181,8 @@ public class LvlWon extends Activity {
                     Toast.makeText(LvlWon.this, "Sorry, this was the last level!", Toast.LENGTH_LONG).show();
                 }
                 else {
-                    musicClass.mpPlayer.release();
-                    musicClass.playing = false;
+                    musicClass.mpPlayer = null;
+                    transition = true;
                     Intent activity = new Intent(LvlWon.this, MainActivity.class);
                     activity.putExtra("level", levelNumber);
                     startActivity(activity);
@@ -181,8 +197,8 @@ public class LvlWon extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                musicClass.mpPlayer.release();
-                musicClass.playing = false;
+                musicClass.mpPlayer = null;
+                transition = true;
                 Intent activity = new Intent(LvlWon.this, MainActivity.class);
                 activity.putExtra("level", levelNumber - 1);
                 startActivity(activity);
