@@ -28,7 +28,7 @@ public class chooseLeaderboardActivity extends Activity {
     }
 
     private void levelButtons() {
-        for (i = 1; 1 < 13; i++) {
+        for (i = 1; i < 13; i++) {
             leaderboardNumber = "leaderboardselect" + i + "";
 
             int imageButtonId = getResources().getIdentifier(leaderboardNumber, "id", this.getPackageName());

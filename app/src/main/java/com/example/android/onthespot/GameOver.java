@@ -122,8 +122,9 @@ public class GameOver extends Activity {
             @Override
             public void onClick(View v) {
                 levelNumber = getIntent().getExtras().getInt("level");
+                Toast.makeText(GameOver.this, "het level is: " + levelNumber, Toast.LENGTH_LONG).show();
                 Intent activity = new Intent(GameOver.this, LeaderboardsActivity.class);
-                activity.putExtra("leaderboards",levelNumber);
+                activity.putExtra("leaderboard",levelNumber);
                 startActivity(activity);
                 finish();
             }

@@ -151,7 +151,7 @@ public class LvlWon extends Activity {
             public void onClick(View v) {
                 levelNumber = getIntent().getExtras().getInt("level");
                 Intent activity = new Intent(LvlWon.this, LeaderboardsActivity.class);
-                activity.putExtra("leaderboards",levelNumber);
+                activity.putExtra("leaderboard",levelNumber);
                 startActivity(activity);
                 finish();
             }
