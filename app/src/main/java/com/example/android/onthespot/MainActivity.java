@@ -413,12 +413,6 @@ public class MainActivity extends Activity {
                                     xTouch < (xPos + shapeSize + (5 * density)) &&
                                     yTouch > (yPos - shapeSize - (5 * density)) &&
                                     yTouch < (yPos + shapeSize + (5 * density))) {
-                                if (player == 2) {
-                                    score2 = score2 + (int) (shapeSize * 5); //Depending on the size of the shape, give more or less points.
-                                }
-                                else {
-                                    score1 = score1 + (int) (shapeSize * 5); //Depending on the size of the shape, give more or less points.
-                                }
                                 shapes.get(i).setShapeSize(0);
                                 oldShapes.add(shapes.get(i));
                                 if (levelNumber == 13) {
@@ -517,10 +511,21 @@ public class MainActivity extends Activity {
                     }
 
                     transition = true;
-                    Intent activity = new Intent(MainActivity.this, LvlWon.class);
-                    activity.putExtra("level", levelNumber);
-                    activity.putExtra("score", score1);
-                    startActivity(activity);
+                    if (levelNumber == 13) {
+                        Intent activity = new Intent(MainActivity.this, MultiplayerEnd.class);
+                        activity.putExtra("level", levelNumber);
+                        activity.putExtra("score1", score1);
+                        activity.putExtra("score2", score2);
+                        startActivity(activity);
+                    }
+
+                    else {
+                        Intent activity = new Intent(MainActivity.this, LvlWon.class);
+                        activity.putExtra("level", levelNumber);
+                        activity.putExtra("score", score1);
+                        startActivity(activity);
+                    }
+
                     finish();
                 }
 

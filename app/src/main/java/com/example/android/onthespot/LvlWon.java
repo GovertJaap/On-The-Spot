@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -97,9 +94,9 @@ public class LvlWon extends Activity {
     }
 
     private void showScore() throws IOException, JSONException {
-        tScore = (TextView) findViewById(R.id.scoreLevelWon);
+        tScore = (TextView) findViewById(R.id.scoreWon);
         tScore.setText("Score: " + score);
-        tHighScore = (TextView) findViewById(R.id.highscoreLevelWon);
+        tHighScore = (TextView) findViewById(R.id.highscoreWon);
         SharedPreferences prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
         tHighScore.setText("Highscore: " + prefs.getInt(scoreKey, 0));
 
