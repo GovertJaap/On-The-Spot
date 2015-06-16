@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Game Over"
-        android:id="@+id/textView"
+        android:id="@+id/gameOver"
         android:layout_marginTop="48dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -43,7 +43,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/score"
         android:id="@+id/scoreGameOver"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/gameOver"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Tap to Restart"
-        android:id="@+id/textView3"
+        android:id="@+id/tapToRestart"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
