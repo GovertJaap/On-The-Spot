@@ -14,7 +14,6 @@ public class FullMenu {
     public static int length;
 
     public FullMenu() {
-
     }
 
     public MediaPlayer createMusic() {
