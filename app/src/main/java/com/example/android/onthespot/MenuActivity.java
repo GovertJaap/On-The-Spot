@@ -132,7 +132,8 @@ public class MenuActivity extends Activity {
             @Override
             public void onClick(View v) {
                 transition = true;
-                Toast.makeText(MenuActivity.this, "Leaderboards are not available.", Toast.LENGTH_LONG).show();
+                Intent activity = new Intent(MenuActivity.this, chooseLeaderboardActivity.class);
+                startActivity(activity);
             }
         });
     }

@@ -75,6 +75,20 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:launchMode= "singleInstance"
+            android:name=".chooseLeaderboardActivity"
+            android:label="Choose leaderboard"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:launchMode= "singleInstance"
+            android:name=".LeaderboardsActivity"
+            android:label="Leaderboard"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

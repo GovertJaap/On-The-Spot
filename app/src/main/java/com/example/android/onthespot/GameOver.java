@@ -140,7 +140,12 @@ public class GameOver extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(GameOver.this, "Leaderboards are " + R.raw.bitdungeonboss + " this cool", Toast.LENGTH_LONG).show();
+                levelNumber = getIntent().getExtras().getInt("level");
+                Intent activity = new Intent(GameOver.this, LeaderboardsActivity.class);
+                activity.putExtra("leaderboard",levelNumber);
+                startActivity(activity);
+                finish();
+
             }
         });
     }

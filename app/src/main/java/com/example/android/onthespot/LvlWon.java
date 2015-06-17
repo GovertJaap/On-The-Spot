@@ -162,9 +162,12 @@ public class LvlWon extends Activity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LvlWon.this, "Leaderboards are not available.", Toast.LENGTH_LONG).show();
-                //startActivity(new Intent(GameOver.this, MainActivity.class));
-                //change to leaderboards.class once integrated
+                levelNumber = getIntent().getExtras().getInt("level");
+                Intent activity = new Intent(LvlWon.this, LeaderboardsActivity.class);
+                activity.putExtra("leaderboard",levelNumber);
+                startActivity(activity);
+                finish();
+
             }
         });
     }
