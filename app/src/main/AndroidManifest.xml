@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.onthespot">
+    package="com.lekkergewoon.android.onthespot">
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -17,28 +17,28 @@
         android:theme="@style/AppTheme" >
         <activity
             android:launchMode= "singleInstance"
-            android:name=".MainActivity"
+            android:name="com.lekkergewoon.android.onthespot.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:launchMode= "singleInstance"
-            android:name=".GameOver"
+            android:name="com.lekkergewoon.android.onthespot.GameOver"
             android:configChanges="orientation|keyboardHidden"
             android:label="Game Over"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:launchMode= "singleInstance"
-            android:name=".LvlWon"
+            android:name="com.lekkergewoon.android.onthespot.LvlWon"
             android:configChanges="orientation|keyboardHidden"
             android:label="Level Won"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:launchMode= "singleInstance"
-            android:name=".MenuActivity"
+            android:name="com.lekkergewoon.android.onthespot.MenuActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
@@ -49,42 +49,42 @@
         </activity>
         <activity
             android:launchMode= "singleInstance"
-            android:name=".LvlSelectActivity"
+            android:name="com.lekkergewoon.android.onthespot.LvlSelectActivity"
             android:label="@string/title_activity_lvl_select"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:launchMode= "singleInstance"
-            android:name=".Options"
+            android:name="com.lekkergewoon.android.onthespot.Options"
             android:label="@string/title_activity_options"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:launchMode= "singleInstance"
-            android:name=".Pause"
+            android:name="com.lekkergewoon.android.onthespot.Pause"
             android:label="@string/title_activity_pause"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:launchMode= "singleInstance"
-            android:name=".MultiplayerEnd"
+            android:name="com.lekkergewoon.android.onthespot.MultiplayerEnd"
             android:label="@string/title_activity_multiplayer_end"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:launchMode= "singleInstance"
-            android:name=".chooseLeaderboardActivity"
+            android:name="com.lekkergewoon.android.onthespot.chooseLeaderboardActivity"
             android:label="Choose leaderboard"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:launchMode= "singleInstance"
-            android:name=".LeaderboardsActivity"
+            android:name="com.lekkergewoon.android.onthespot.LeaderboardsActivity"
             android:label="Leaderboard"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait">
