@@ -90,7 +90,6 @@ public class GameOver extends Activity {
             editor.putInt(scoreKey, highscore);
             editor.commit();
         }
-        submitScore();
     }
 
     private void showScore() throws IOException, JSONException {
