@@ -104,7 +104,7 @@ public class MainActivity extends Activity {
         }
 
         if (levelNumber == 13) {
-            gameTimer = 3600;
+            gameTimer = 5400;
             circleColor = "#DF0101";
             rectangleColor = "#DF0101";
             hexagonColor = "#DF0101";
@@ -179,7 +179,11 @@ public class MainActivity extends Activity {
                     //The limits for this depend on the density and pixel height/width of the screen.
                     if (levelNumber == 13) {
                         player = rand.nextInt(3) + 1;
-                        if (player == 1 || gameTimer > 1800) {
+                        if (gameTimer < 1800) {
+                            newX = (int) (rand.nextInt(getWidth() - Math.round(120 * density)) + (60 * density));
+                            newY = (int) (rand.nextInt(getHeight() - Math.round(120 * density)) + (60 * density));
+                        }
+                        else if (player == 1 || gameTimer > 3600) {
                             newX = (int) (rand.nextInt(getWidth() - Math.round(120 * density)) + (60 * density));
                             newY = (int) (rand.nextInt(getHeight() - Math.round(440 * density)) + (380 * density));
                         }
@@ -195,6 +199,10 @@ public class MainActivity extends Activity {
                     }
 
                     if (levelNumber == 13 && gameTimer < 1800) {
+                        maximumShapes = 15;
+                        spawnSpeed = 10;
+                    }
+                    else if (levelNumber == 13 && gameTimer < 3600) {
                         maximumShapes = 10;
                         spawnSpeed = 15;
                     }
@@ -224,19 +232,19 @@ public class MainActivity extends Activity {
                         newType = "Hexagon";
                     }
 
-                    if (player == 1 || (levelNumber == 13 && gameTimer > 1800)) {
+                    if (player == 1 || (levelNumber == 13 && gameTimer > 3600)) {
                         //Make a new shape according to the Shape class we've created, give it all the data used to determine it's characteristics.
                         Shape newShape = new Shape(newX, newY, size, newType, rotation, 0, 1);
                         //Add the shape to our list of existing shapes.
                         shapes.add(newShape);
                     }
 
-                    if (gameTimer < 1800 && player == 2) {
+                    if (gameTimer <= 3600 && player == 2) {
                         Shape newShape = new Shape(newX, newY, size, newType, rotation, 0, 2);
                         shapes.add(newShape);
                     }
 
-                    else if (levelNumber == 13 && gameTimer > 1800){
+                    else if (levelNumber == 13 && gameTimer > 3600){
                         Shape newShape = new Shape(newX, getHeight() - newY, size, newType, rotation, 0, 2);
                         shapes.add(newShape);
                     }
@@ -386,7 +394,7 @@ public class MainActivity extends Activity {
                         }
 
                         else {
-                            if (gameTimer < 1800) {
+                            if (gameTimer < 3600) {
                                 shapes.remove(i);
                                 i--;
                             }
@@ -416,7 +424,7 @@ public class MainActivity extends Activity {
                                 shapes.get(i).setShapeSize(0);
                                 oldShapes.add(shapes.get(i));
                                 if (levelNumber == 13) {
-                                    if (gameTimer < 1800) {
+                                    if (gameTimer < 3600) {
                                         if (player == 2) {
                                             score2 = score2 + (int) (shapeSize * 5); //Depending on the size of the shape, give more or less points.
                                         }
@@ -468,7 +476,8 @@ public class MainActivity extends Activity {
                     paint.setColor(Color.BLACK);
                     paint.setStyle(Paint.Style.STROKE);
                     paint.setStrokeWidth(5 * density);
-                    canvas.drawLine(0, getHeight() / 2, getWidth(), getHeight() / 2, paint);
+                    if (gameTimer > 1800)
+                        canvas.drawLine(0, getHeight() / 2, getWidth(), getHeight() / 2, paint);
 
                     paint.setStrokeWidth(0);
                     paint.setTextSize(20 * density);
@@ -567,7 +576,11 @@ public class MainActivity extends Activity {
 
                     if (levelNumber == 13) {
                         player = rand.nextInt(3) + 1;
-                        if (player == 1 || gameTimer > 1800) {
+                        if (gameTimer < 1800) {
+                            newX = (int) (rand.nextInt(getWidth() - Math.round(120 * density)) + (60 * density));
+                            newY = (int) (rand.nextInt(getHeight() - Math.round(120 * density)) + (60 * density));
+                        }
+                        else if (player == 1 || gameTimer > 3600) {
                             newX = (int) (rand.nextInt(getWidth() - Math.round(120 * density)) + (60 * density));
                             newY = (int) (rand.nextInt(getHeight() - Math.round(440 * density)) + (380 * density));
                         }
