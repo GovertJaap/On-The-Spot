@@ -198,10 +198,12 @@ public class MainActivity extends Activity {
                     if (levelNumber == 13 && gameTimer < 1800) {
                         maximumShapes = 15;
                         spawnSpeed = 10;
+                        backgroundColor = "#E6DFBA";
                     }
                     else if (levelNumber == 13 && gameTimer < 3600) {
                         maximumShapes = 10;
                         spawnSpeed = 15;
+                        backgroundColor = "#D7F5DF";
                     }
                     rotation = rand.nextInt(360);
 
@@ -481,7 +483,7 @@ public class MainActivity extends Activity {
                     canvas.drawText("Player 1: " + score1, (int) (getWidth() / 1.7f), (int) (getHeight() - 7 * density), paint);
 
                     canvas.rotate(180, 360, 640);
-                    canvas.drawText("Player 2: " + score2, (int) (getWidth() - (getWidth() / 2.45f)), getHeight() - 7 * density, paint);
+                    canvas.drawText("Player 2: " + score2, (int) (getWidth() - (getWidth() / 2.45f)), (int) (getHeight() - 7 * density), paint);
                     canvas.rotate(-180, 360, 640);
                 }
 
@@ -495,7 +497,7 @@ public class MainActivity extends Activity {
                     canvas.drawRect(-5 * density, -5 * density, getWidth() + 5 * density, (int) (density * 77), paint);
                     canvas.drawBitmap(livesBitmap, (int) (getWidth() / 36), 5 * density, null);
                     canvas.drawBitmap(timeBitmap, (int) (getWidth() / 3.27f), 5 * density, null);
-                    canvas.drawBitmap(pauseBitmap, (int) (getWidth() - (getWidth() / 4.8)), 5 * density, null);
+                    canvas.drawBitmap(pauseBitmap, (int) (getWidth() - (getWidth() / 4.8f)), 5 * density, null);
 
                     paint.setColor(Color.WHITE);
                     paint.setTextSize(34 * density);
@@ -505,9 +507,9 @@ public class MainActivity extends Activity {
                     paint.setColor(Color.BLACK);
                     paint.setTextSize(26 * density);
                     canvas.drawText("" + gameTimer / 60, (int) (getWidth() / 3.27f + 27.4f * density), (int) (52.4f * density), paint);
-                    canvas.drawText("Score: ", (int) (getWidth() / 1.57f), 31 * density, paint);
+                    canvas.drawText("Score: ", (int) (getWidth() / 1.57f), (int) (31 * density), paint);
                     paint.setTextSize(30 * density);
-                    canvas.drawText("" + score1, (int) (getWidth() / 1.60f), 62 * density, paint);
+                    canvas.drawText("" + score1, (int) (getWidth() / 1.60f), (int) (62 * density), paint);
                 }
 
                 if (gameTimer <= 0) {
@@ -732,16 +734,6 @@ public class MainActivity extends Activity {
             private int timeAlive;
             private int player;
 
-
-            public Shape(int xPos, int yPos, float shapeSize, String type, float rotation, int timeAlive) {
-                this.xPos = xPos;
-                this.yPos = yPos;
-                this.shapeSize = shapeSize;
-                this.rotation = rotation;
-                this.type = type;
-                this.timeAlive = timeAlive;
-            }
-
             public Shape(int xPos, int yPos, float shapeSize, String type, float rotation, int timeAlive, int player) {
                 this.xPos = xPos;
                 this.yPos = yPos;
@@ -768,20 +760,8 @@ public class MainActivity extends Activity {
                 return type;
             }
 
-            public void setXPos(int xPos) {
-                this.xPos = xPos;
-            }
-
-            public void setYPos(int yPos) {
-                this.yPos = yPos;
-            }
-
             public void setShapeSize(float shapeSize) {
                 this.shapeSize = shapeSize;
-            }
-
-            public void setType(String type) {
-                this.type = type;
             }
 
             public float getRotation() {
@@ -802,10 +782,6 @@ public class MainActivity extends Activity {
 
             public int getPlayer() {
                 return player;
-            }
-
-            public void setPlayer(int player) {
-                this.player = player;
             }
         }
     }
