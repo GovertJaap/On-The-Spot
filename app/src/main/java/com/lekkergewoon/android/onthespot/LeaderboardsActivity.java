@@ -15,6 +15,8 @@ public class LeaderboardsActivity extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        leaderboard = getIntent().getExtras().getInt("leaderboard");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboards);
         showleaderboard();
