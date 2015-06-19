@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -37,6 +38,10 @@ public class LvlSelectActivity extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_lvl_select);
+
+        TextView tv = (TextView) findViewById(R.id.levelSelectMenu);
+        Typeface font= Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
+        tv.setTypeface(font);
 
         try {
             setupButtons();

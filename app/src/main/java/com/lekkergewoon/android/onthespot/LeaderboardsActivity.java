@@ -1,6 +1,7 @@
 package com.lekkergewoon.android.onthespot;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -17,6 +18,11 @@ public class LeaderboardsActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboards);
+
+        TextView tv = (TextView) findViewById(R.id.leaderboardText);
+        Typeface font= Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
+        tv.setTypeface(font);
+
         showleaderboard();
         backButton();
     }

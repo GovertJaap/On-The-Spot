@@ -26,7 +26,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="52dp" />
+        android:layout_marginBottom="52dp"
+        android:background="@drawable/red_button"
+        style="@style/ButtonText"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,6 +57,8 @@
         android:id="@+id/restart"
         android:layout_above="@+id/GotoMenuMpWon"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:background="@drawable/red_button"
+        style="@style/ButtonText"/>
 
 </RelativeLayout>
