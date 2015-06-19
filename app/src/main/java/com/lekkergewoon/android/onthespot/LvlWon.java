@@ -36,7 +36,7 @@ import java.io.InputStream;
 /**
  * Created by Mike on 6-6-2015.
  */
-public class LvlWon extends FragmentActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class LvlWon extends FragmentActivity implements ConnectionCallbacks, OnConnectionFailedListener {
 
 
     // Request code to use when launching the resolution activity
@@ -212,11 +212,46 @@ public class LvlWon extends FragmentActivity implements GoogleApiClient.Connecti
             @Override
             public void onClick(View v) {
                 levelNumber = getIntent().getExtras().getInt("level");
-                Intent activity = new Intent(LvlWon.this, LeaderboardsActivity.class);
-                activity.putExtra("leaderboard",levelNumber);
-                startActivity(activity);
-                finish();
+                switch(levelNumber) {
+                    case 1:
+                        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,"CgkIvsGnkbUREAIQAA"), 1);
 
+                        break;
+                    case 2:
+                        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, "CgkIvsGnkbUREAIQAQ"), 1);
+                        break;
+                    case 3:
+                        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, "CgkIvsGnkbUREAIQAg"), 1);
+                        break;
+                    case 4:
+                        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, "CgkIvsGnkbUREAIQAw"), 1);
+                        break;
+                    case 5:
+                        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, "CgkIvsGnkbUREAIQBA"), 1);
+                        break;
+                    case 6:
+                        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, "CgkIvsGnkbUREAIQBQ"), 1);
+                        break;
+                    case 7:
+                        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, "CgkIvsGnkbUREAIQBg"), 1);
+                        break;
+                    case 8:
+                        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, "CgkIvsGnkbUREAIQBw"), 1);
+                        break;
+                    case 9:
+                        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, "CgkIvsGnkbUREAIQCA"), 1);
+                        break;
+                    case 10:
+                        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, "CgkIvsGnkbUREAIQCQ"), 1);
+                        break;
+                    case 11:
+                        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, "CgkIvsGnkbUREAIQCg"), 1);
+                        break;
+                    case 12:
+                        startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, "CgkIvsGnkbUREAIQCw"), 1);
+                        break;
+                }
+                finish();
             }
         });
     }
