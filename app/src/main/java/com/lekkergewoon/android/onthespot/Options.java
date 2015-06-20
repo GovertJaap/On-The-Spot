@@ -3,14 +3,12 @@ package com.lekkergewoon.android.onthespot;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lekkergewoon.android.onthespot.R;
@@ -34,10 +32,6 @@ public class Options extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_options);
-
-        TextView tv = (TextView) findViewById(R.id.optionsText);
-        Typeface font= Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
-        tv.setTypeface(font);
 
         prefs = this.getSharedPreferences("mainLevelsSave", Context.MODE_PRIVATE);
         editor = prefs.edit();

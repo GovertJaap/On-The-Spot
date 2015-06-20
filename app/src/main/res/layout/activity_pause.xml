@@ -12,8 +12,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Paused"
-        android:textSize="80sp"
-        android:textColor="#4F0101"
         android:id="@+id/pauseText"
         android:layout_marginBottom="74dp"
         android:layout_above="@+id/pauseContinue"
@@ -25,9 +23,7 @@
         android:text="Continue"
         android:id="@+id/pauseContinue"
         android:layout_above="@+id/pauseRestart"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/red_button"
-        style="@style/ButtonText"/>
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:layout_width="match_parent"
@@ -35,9 +31,7 @@
         android:text="Restart"
         android:id="@+id/pauseRestart"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/red_button"
-        style="@style/ButtonText"/>
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="match_parent"
@@ -45,7 +39,5 @@
         android:text="Main Menu"
         android:id="@+id/pauseMenu"
         android:layout_below="@+id/pauseRestart"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/red_button"
-        style="@style/ButtonText"/>
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

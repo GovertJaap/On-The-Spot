@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,22 +39,6 @@ public class GameOver extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_game_over);
-
-        TextView tv = (TextView) findViewById(R.id.gameOver);
-        Typeface font = Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
-        tv.setTypeface(font);
-
-        tv = (TextView) findViewById(R.id.tapToRestart);
-        font = Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
-        tv.setTypeface(font);
-
-        tv = (TextView) findViewById(R.id.scoreGameOver);
-        font = Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
-        tv.setTypeface(font);
-
-        tv = (TextView) findViewById(R.id.highscoreGameOver);
-        font = Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
-        tv.setTypeface(font);
 
         updateScore();
         try {

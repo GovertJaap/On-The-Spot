@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -42,18 +41,6 @@ public class LvlWon extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_lvl_won);
-
-        TextView tv = (TextView) findViewById(R.id.lvlWon);
-        Typeface font = Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
-        tv.setTypeface(font);
-
-        tv = (TextView) findViewById(R.id.highscoreWon);
-        font = Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
-        tv.setTypeface(font);
-
-        tv = (TextView) findViewById(R.id.scoreWon);
-        font = Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
-        tv.setTypeface(font);
 
         updateScore();
         try {

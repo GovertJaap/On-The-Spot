@@ -2,13 +2,11 @@ package com.lekkergewoon.android.onthespot;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class Pause extends Activity {
 
@@ -26,10 +24,6 @@ public class Pause extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_pause);
-
-        TextView tv = (TextView) findViewById(R.id.pauseText);
-        Typeface font= Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
-        tv.setTypeface(font);
 
         continueButton();
         restartButton();

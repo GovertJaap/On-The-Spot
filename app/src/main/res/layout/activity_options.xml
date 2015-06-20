@@ -13,9 +13,7 @@
         android:text="Reset Highscores"
         android:id="@+id/resetScores"
         android:layout_above="@+id/resetUnlocks"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/red_button"
-        style="@style/ButtonText"/>
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,11 +21,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Options"
         android:id="@+id/optionsText"
-        android:textSize="80sp"
-        android:textColor="#4F0101"
-        android:layout_above="@+id/resetScores"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="55dp"/>
+        android:layout_marginTop="55dp" />
 
     <Button
         android:layout_width="fill_parent"
@@ -35,9 +31,7 @@
         android:text="Reset Level Unlocks and scores"
         android:id="@+id/resetUnlocks"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/red_button"
-        style="@style/ButtonText"/>
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="fill_parent"
@@ -45,9 +39,7 @@
         android:text="Unlock All Levels"
         android:id="@+id/unlockAll"
         android:layout_below="@+id/resetUnlocks"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/red_button"
-        style="@style/ButtonText"/>
+        android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:layout_width="55dp"
@@ -66,8 +58,6 @@
         android:id="@+id/musicChange"
         android:layout_below="@+id/unlockAll"
         android:layout_alignRight="@+id/unlockAll"
-        android:layout_alignEnd="@+id/unlockAll"
-        android:background="@drawable/red_button"
-        style="@style/ButtonText"/>
+        android:layout_alignEnd="@+id/unlockAll" />
 
 </RelativeLayout>

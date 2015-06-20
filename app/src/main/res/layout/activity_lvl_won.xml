@@ -14,10 +14,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Level Completed"
         android:id="@+id/lvlWon"
-        android:textSize="60sp"
-        android:textColor="#4F0101"
-        android:gravity="center"
-        android:lineSpacingMultiplier="0.9"
         android:layout_marginTop="48dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -29,9 +25,7 @@
         android:id="@+id/Leaderboards"
         android:layout_above="@+id/GotoMenuWon"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/red_button"
-        style="@style/ButtonText"/>
+        android:layout_alignParentEnd="true" />
 
     <Button
         android:layout_width="match_parent"
@@ -41,9 +35,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="52dp"
-        android:background="@drawable/red_button"
-        style="@style/ButtonText"/>
+        android:layout_marginBottom="52dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,8 +43,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Highscore: 0"
         android:id="@+id/highscoreWon"
-        android:textSize="30sp"
-        android:textColor="#4F0101"
         android:layout_below="@+id/scoreWon"
         android:layout_centerHorizontal="true" />
 
@@ -62,10 +52,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Score: 0"
         android:id="@+id/scoreWon"
-        android:textSize="30sp"
-        android:textColor="#4F0101"
         android:layout_below="@+id/lvlWon"
-        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -75,9 +62,7 @@
         android:id="@+id/restart"
         android:layout_above="@+id/Leaderboards"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/red_button"
-        style="@style/ButtonText"/>
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="match_parent"
@@ -86,9 +71,7 @@
         android:id="@+id/nextlvl"
         android:layout_above="@+id/restart"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/red_button"
-        style="@style/ButtonText"/>
+        android:layout_alignParentStart="true" />
 
     <ImageView
         android:layout_width="201dp"
