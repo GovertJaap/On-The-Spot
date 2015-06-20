@@ -453,22 +453,23 @@ public class MainActivity extends Activity {
                                 }
                                 justTouched = false;
                             }
+                            if (levelNumber != 13){
+                                if (xTouch > (getWidth() - (getWidth() / 4.8)) &&
+                                        xTouch < (getWidth() - (getWidth() / 4.8) + (64.8 * density)) &&
+                                        yTouch > (5 * density) &&
+                                        yTouch < (69.8 * density)) {
+                                    if (musicClass.musicOn == true) {
+                                        musicClass.mpPlayer.pause();
+                                        musicClass.playing = false;
+                                        musicClass.length = musicClass.mpPlayer.getCurrentPosition();
+                                    }
 
-                            if (xTouch > (getWidth() - (getWidth() / 4.8)) &&
-                                    xTouch < (getWidth() - (getWidth() / 4.8) + (64.8 * density)) &&
-                                    yTouch > (5 * density) &&
-                                    yTouch < (69.8 * density)) {
-                                if (musicClass.musicOn == true) {
-                                    musicClass.mpPlayer.pause();
-                                    musicClass.playing = false;
-                                    musicClass.length = musicClass.mpPlayer.getCurrentPosition();
+                                    transition = true;
+                                    Intent activity = new Intent(MainActivity.this, Pause.class);
+                                    activity.putExtra("level", levelNumber);
+
+                                    startActivity(activity);
                                 }
-
-                                transition = true;
-                                Intent activity = new Intent(MainActivity.this, Pause.class);
-                                activity.putExtra("level", levelNumber);
-
-                                startActivity(activity);
                             }
                         }
                     }

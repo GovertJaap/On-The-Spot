@@ -80,8 +80,7 @@ public class MenuActivity extends Activity {
         }
 
         singlePlayButton();
-        multiplayButton();
-        scoreButton();
+        multiplayButton();;
         optionsButton();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
@@ -117,21 +116,6 @@ public class MenuActivity extends Activity {
                 transition = true;
                 Intent activity = new Intent(MenuActivity.this, MainActivity.class);
                 activity.putExtra("level", 12);
-                startActivity(activity);
-                finish();
-            }
-        });
-    }
-
-    private void scoreButton() {
-        Button playButton = (Button) findViewById(R.id.leaderboardButton);
-        playButton.setOnClickListener(new View.OnClickListener() {
-            ;
-
-            @Override
-            public void onClick(View v) {
-                transition = true;
-                Intent activity = new Intent(MenuActivity.this, chooseLeaderboardActivity.class);
                 startActivity(activity);
                 finish();
             }

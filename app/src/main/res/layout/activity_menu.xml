@@ -23,24 +23,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Leaderboards"
-        android:id="@+id/leaderboardButton"
-        android:background="@drawable/red_button"
-        android:clickable="true"
-        android:layout_below="@+id/multiplayerButton"
-        android:layout_centerHorizontal="true"
-        style="@style/ButtonText" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Options"
         android:id="@+id/optionsButton"
         android:background="@drawable/red_button"
         android:clickable="true"
-        android:layout_below="@+id/leaderboardButton"
         android:layout_centerHorizontal="true"
-        style="@style/ButtonText" />
+        style="@style/ButtonText"
+        android:layout_below="@+id/multiplayerButton" />
 
     <ImageView
         android:layout_width="307dp"
