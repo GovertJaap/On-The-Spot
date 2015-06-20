@@ -372,6 +372,8 @@ public class MainActivity extends Activity {
                         Intent activity = new Intent(MainActivity.this, GameOver.class);
                         activity.putExtra("level", levelNumber);
                         activity.putExtra("score", score1);
+                        activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(activity);
                         finish();
                     }
@@ -465,6 +467,7 @@ public class MainActivity extends Activity {
                                 transition = true;
                                 Intent activity = new Intent(MainActivity.this, Pause.class);
                                 activity.putExtra("level", levelNumber);
+
                                 startActivity(activity);
                             }
                         }
@@ -524,6 +527,8 @@ public class MainActivity extends Activity {
                         activity.putExtra("level", levelNumber);
                         activity.putExtra("score1", score1);
                         activity.putExtra("score2", score2);
+                        activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(activity);
                     }
 
@@ -531,6 +536,8 @@ public class MainActivity extends Activity {
                         Intent activity = new Intent(MainActivity.this, LvlWon.class);
                         activity.putExtra("level", levelNumber);
                         activity.putExtra("score", score1);
+                        activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(activity);
                     }
 

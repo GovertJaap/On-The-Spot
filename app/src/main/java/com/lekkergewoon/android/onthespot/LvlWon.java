@@ -232,7 +232,6 @@ public class LvlWon extends FragmentActivity implements ConnectionCallbacks, OnC
                 switch(levelNumber) {
                     case 1:
                         startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,"CgkIvsGnkbUREAIQAA"), 1);
-
                         break;
                     case 2:
                         startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, "CgkIvsGnkbUREAIQAQ"), 1);
@@ -286,6 +285,8 @@ public class LvlWon extends FragmentActivity implements ConnectionCallbacks, OnC
                     transition = true;
                     Intent activity = new Intent(LvlWon.this, MainActivity.class);
                     activity.putExtra("level", levelNumber);
+                    activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(activity);
                     finish();
                 }
@@ -302,6 +303,8 @@ public class LvlWon extends FragmentActivity implements ConnectionCallbacks, OnC
                 transition = true;
                 Intent activity = new Intent(LvlWon.this, MainActivity.class);
                 activity.putExtra("level", levelNumber - 1);
+                activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(activity);
                 finish();
             }

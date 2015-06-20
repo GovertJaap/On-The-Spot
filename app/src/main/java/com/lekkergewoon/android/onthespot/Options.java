@@ -2,6 +2,7 @@ package com.lekkergewoon.android.onthespot;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -26,6 +27,8 @@ public class Options extends Activity {
     @Override
     public void onBackPressed() {
         transition = true;
+        Intent activity = new Intent(Options.this, MenuActivity.class);
+        startActivity(activity);
         finish();
     }
 
@@ -146,6 +149,8 @@ public class Options extends Activity {
             @Override
             public void onClick(View v) {
                 transition = true;
+                Intent activity = new Intent(Options.this, MenuActivity.class);
+                startActivity(activity);
                 finish();
             }
         });

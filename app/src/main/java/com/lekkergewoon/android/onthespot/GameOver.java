@@ -257,6 +257,8 @@ public class GameOver extends FragmentActivity implements ConnectionCallbacks, O
             transition = true;
             Intent activity = new Intent(GameOver.this, MainActivity.class);
             activity.putExtra("level", levelNumber - 1);
+            activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(activity);
             finish();
         }

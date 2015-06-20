@@ -39,8 +39,6 @@ public class chooseLeaderboardActivity extends FragmentActivity implements Conne
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(STATE_RESOLVING_ERROR, mResolvingError);
-
-
     }
 
     @Override
@@ -78,7 +76,6 @@ public class chooseLeaderboardActivity extends FragmentActivity implements Conne
                     switch(v.getId()) {
                         case R.id.leaderboardselect1:
                             startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient,"CgkIvsGnkbUREAIQAA"), 1);
-
                             break;
                         case R.id.leaderboardselect2:
                             startActivityForResult(Games.Leaderboards.getLeaderboardIntent(mGoogleApiClient, "CgkIvsGnkbUREAIQAQ"), 1);
@@ -125,6 +122,8 @@ public class chooseLeaderboardActivity extends FragmentActivity implements Conne
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent activity = new Intent(chooseLeaderboardActivity.this, MenuActivity.class);
+                startActivity(activity);
                 finish();
             }
         });
@@ -132,6 +131,13 @@ public class chooseLeaderboardActivity extends FragmentActivity implements Conne
     @Override
     public void onConnected(Bundle bundle) {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent activity = new Intent(chooseLeaderboardActivity.this, MenuActivity.class);
+        startActivity(activity);
+        finish();
     }
 
     @Override

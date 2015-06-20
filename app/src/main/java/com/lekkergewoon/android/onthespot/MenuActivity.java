@@ -96,6 +96,7 @@ public class MenuActivity extends Activity {
                 transition = true;
                 Intent activity = new Intent(MenuActivity.this, LvlSelectActivity.class);
                 startActivity(activity);
+                finish();
             }
         });
     }
@@ -117,6 +118,7 @@ public class MenuActivity extends Activity {
                 Intent activity = new Intent(MenuActivity.this, MainActivity.class);
                 activity.putExtra("level", 12);
                 startActivity(activity);
+                finish();
             }
         });
     }
@@ -131,6 +133,7 @@ public class MenuActivity extends Activity {
                 transition = true;
                 Intent activity = new Intent(MenuActivity.this, chooseLeaderboardActivity.class);
                 startActivity(activity);
+                finish();
             }
         });
     }
@@ -145,6 +148,7 @@ public class MenuActivity extends Activity {
                 transition = true;
                 Intent activity = new Intent(MenuActivity.this, Options.class);
                 startActivity(activity);
+                finish();
             }
         });
     }
