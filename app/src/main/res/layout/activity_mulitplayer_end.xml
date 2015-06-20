@@ -15,6 +15,7 @@
         android:text="Player ? Won!"
         android:id="@+id/playerWon"
         android:textSize="60sp"
+        android:gravity="center"
         android:textColor="#4F0101"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"

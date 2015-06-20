@@ -14,6 +14,7 @@
 
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
+
         <ImageButton
             android:layout_width="100dp"
             android:layout_height="109.473dp"
@@ -329,7 +330,7 @@
             android:background="@drawable/levellocked"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            />
+            android:nestedScrollingEnabled="false" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -538,7 +539,7 @@
         android:layout_height="wrap_content"
         android:text="Level Select"
         android:id="@+id/levelSelectMenu"
-        android:textSize="55sp"
+        android:textSize="50sp"
         android:textColor="#4F0101"
         android:layout_above="@+id/gridLvlSelect1"
         android:layout_centerHorizontal="true"

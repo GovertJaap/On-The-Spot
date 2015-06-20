@@ -30,8 +30,6 @@ public class LvlSelectActivity extends Activity {
     @Override
     public void onBackPressed() {
         transition = true;
-        Intent activity = new Intent(LvlSelectActivity.this, MenuActivity.class);
-        startActivity(activity);
         finish();
     }
 
@@ -81,8 +79,6 @@ public class LvlSelectActivity extends Activity {
 
     @Override
     protected void onResume() {
-
-
         transition = false;
         super.onResume();
     }
@@ -241,8 +237,6 @@ public class LvlSelectActivity extends Activity {
             @Override
             public void onClick(View v) {
                 transition = true;
-                Intent activity = new Intent(LvlSelectActivity.this, MenuActivity.class);
-                startActivity(activity);
                 finish();
             }
         });

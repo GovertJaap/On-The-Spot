@@ -91,8 +91,6 @@ public class MultiplayerEnd extends Activity {
             public void onClick(View v) {
                 goToMenu = true;
                 transition = true;
-                Intent activity = new Intent(MultiplayerEnd.this, MenuActivity.class);
-                startActivity(activity);
                 finish();
             }
         });

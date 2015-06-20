@@ -159,10 +159,6 @@ public class GameOver extends Activity{
             @Override
             public void onClick(View v) {
                 goToMenu = true;
-                Intent activity = new Intent(GameOver.this, MenuActivity.class);
-                activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(activity);
                 finish();
             }
         });
@@ -174,8 +170,6 @@ public class GameOver extends Activity{
             transition = true;
             Intent activity = new Intent(GameOver.this, MainActivity.class);
             activity.putExtra("level", levelNumber - 1);
-            activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(activity);
             finish();
         }

@@ -372,8 +372,6 @@ public class MainActivity extends Activity {
                         Intent activity = new Intent(MainActivity.this, GameOver.class);
                         activity.putExtra("level", levelNumber);
                         activity.putExtra("score", score1);
-                        activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(activity);
                         finish();
                     }
@@ -486,9 +484,9 @@ public class MainActivity extends Activity {
                     paint.setTextSize(20 * density);
                     canvas.drawText("Player 1: " + score1, (int) (getWidth() / 1.7f), (int) (getHeight() - 7 * density), paint);
 
-                    canvas.rotate(180, 360, 640);
-                    canvas.drawText("Player 2: " + score2, (int) (getWidth() - (getWidth() / 2.45f)), (int) (getHeight() - 7 * density), paint);
-                    canvas.rotate(-180, 360, 640);
+                    canvas.rotate(180, (int) (getWidth() - (getWidth() / 1.7f)), (int) (7 * density));
+                    canvas.drawText("Player 2: " + score2, (int) (getWidth() - (getWidth() / 1.7f)), (int) (7 * density), paint);
+                    canvas.rotate(-180, (int) (getWidth() - (getWidth() / 1.7f)), (int) (7 * density));
                 }
 
                 else {
@@ -528,17 +526,13 @@ public class MainActivity extends Activity {
                         activity.putExtra("level", levelNumber);
                         activity.putExtra("score1", score1);
                         activity.putExtra("score2", score2);
-                        activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(activity);
+                         startActivity(activity);
                     }
 
                     else {
                         Intent activity = new Intent(MainActivity.this, LvlWon.class);
                         activity.putExtra("level", levelNumber);
                         activity.putExtra("score", score1);
-                        activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(activity);
                     }
 

@@ -27,8 +27,6 @@ public class Options extends Activity {
     @Override
     public void onBackPressed() {
         transition = true;
-        Intent activity = new Intent(Options.this, MenuActivity.class);
-        startActivity(activity);
         finish();
     }
 
@@ -119,8 +117,6 @@ public class Options extends Activity {
             @Override
             public void onClick(View v) {
                 transition = true;
-                Intent activity = new Intent(Options.this, MenuActivity.class);
-                startActivity(activity);
                 finish();
             }
         });
