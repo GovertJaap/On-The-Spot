@@ -8,13 +8,14 @@
 
     <TextView
         android:text="Leaderboard"
-        android:textSize="40dp"
+        android:id="@+id/leaderboardText"
+        android:textSize="55sp"
+        android:textColor="#4F0101"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:textColor="#ff000000" />
+        android:layout_marginTop="70dp" />
 
     <ImageButton
         android:layout_width="55dp"

@@ -2,9 +2,11 @@ package com.lekkergewoon.android.onthespot;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 
 public class chooseLeaderboardActivity extends Activity {
@@ -16,6 +18,11 @@ public class chooseLeaderboardActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_leaderboard);
+
+        TextView tv = (TextView) findViewById(R.id.chooseleaderboardtext);
+        Typeface font= Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
+        tv.setTypeface(font);
+
         levelButtons();
         backButton();
     }
@@ -70,7 +77,6 @@ public class chooseLeaderboardActivity extends Activity {
                             break;
                     }
                     startActivity(activity);
-                    finish();
                 }
             });
         }

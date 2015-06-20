@@ -2,6 +2,7 @@ package com.lekkergewoon.android.onthespot;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -29,6 +30,18 @@ public class MultiplayerEnd extends Activity {
         super.onCreate(savedInstanceState);
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         setContentView(R.layout.activity_mulitplayer_end);
+
+        TextView tv = (TextView) findViewById(R.id.playerWon);
+        Typeface font= Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
+        tv.setTypeface(font);
+
+        tv = (TextView) findViewById(R.id.player1Score);
+        font = Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
+        tv.setTypeface(font);
+
+        tv = (TextView) findViewById(R.id.player2Score);
+        font = Typeface.createFromAsset(getAssets(), "arcade_regular.ttf");
+        tv.setTypeface(font);
 
         showScore();
         MenuButton();
