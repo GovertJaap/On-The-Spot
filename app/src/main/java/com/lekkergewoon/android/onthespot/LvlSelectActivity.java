@@ -50,16 +50,6 @@ public class LvlSelectActivity extends Activity {
             e.printStackTrace();
         }
 
-        if (musicClass.playing == false && musicClass.mpPlayer == null && musicClass.musicOn == true) {
-            musicClass.mpPlayer = musicClass.createMusic().create(this, R.raw.menu);
-            musicClass.mpPlayer.start();
-            musicClass.playing = true;
-        } else if (musicClass.playing == false && musicClass.mpPlayer != null && musicClass.musicOn == true) {
-            musicClass.mpPlayer.start();
-            musicClass.mpPlayer.seekTo(musicClass.length);
-            musicClass.playing = true;
-        }
-
         switchLvlButton1();
         switchLvlButton2();
         backButton();
