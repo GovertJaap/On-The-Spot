@@ -42,8 +42,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Main Menu"
-        android:id="@+id/pauseMenu"
+        android:text="Level Select"
+        android:id="@+id/pauseLvlSelect"
         android:layout_below="@+id/pauseRestart"
         android:layout_centerHorizontal="true"
         android:background="@drawable/red_button"

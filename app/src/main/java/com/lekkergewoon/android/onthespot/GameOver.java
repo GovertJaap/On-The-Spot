@@ -81,7 +81,7 @@ public class GameOver extends Activity{
             e.printStackTrace();
         }
 
-        MenuButton();
+        lvlSelectButton();
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
@@ -153,12 +153,15 @@ public class GameOver extends Activity{
         tLevelImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
     }
 
-    private void MenuButton() {
-        Button button = (Button) findViewById(R.id.GotoMenuGameOver);
+    private void lvlSelectButton() {
+        Button button = (Button) findViewById(R.id.GotoLvlSelectGameOver);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 goToMenu = true;
+                transition = true;
+                Intent activity = new Intent(GameOver.this, LvlSelectActivity.class);
+                startActivity(activity);
                 finish();
             }
         });

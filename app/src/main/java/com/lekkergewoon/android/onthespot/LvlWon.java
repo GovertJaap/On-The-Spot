@@ -81,7 +81,7 @@ public class LvlWon extends Activity  {
             e.printStackTrace();
         }
 
-        MenuButton();
+        lvlSelectButton();
         NextButton();
         RestartButton();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -175,18 +175,14 @@ public class LvlWon extends Activity  {
         return json;
     }
 
-    private void MenuButton() {
-        Button button = (Button) findViewById(R.id.GotoMenuWon);
+    private void lvlSelectButton() {
+        Button button = (Button) findViewById(R.id.GotoLvlSelectWon);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent activity = new Intent(LvlWon.this, MenuActivity.class);
-//                startActivity(activity);
                 goToMenu = true;
                 transition = true;
-                Intent activity = new Intent(LvlWon.this, MenuActivity.class);
-                activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent activity = new Intent(LvlWon.this, LvlSelectActivity.class);
                 startActivity(activity);
                 finish();
             }
@@ -206,8 +202,6 @@ public class LvlWon extends Activity  {
                     transition = true;
                     Intent activity = new Intent(LvlWon.this, MainActivity.class);
                     activity.putExtra("level", levelNumber);
-                    activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(activity);
                     finish();
                 }
@@ -224,8 +218,6 @@ public class LvlWon extends Activity  {
                 transition = true;
                 Intent activity = new Intent(LvlWon.this, MainActivity.class);
                 activity.putExtra("level", levelNumber - 1);
-                activity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                activity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(activity);
                 finish();
             }

@@ -24,8 +24,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Main Menu"
-        android:id="@+id/GotoMenuGameOver"
+        android:text="Level Select"
+        android:id="@+id/GotoLvlSelectGameOver"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

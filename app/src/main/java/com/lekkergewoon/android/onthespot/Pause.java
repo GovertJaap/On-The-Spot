@@ -33,7 +33,7 @@ public class Pause extends Activity {
 
         continueButton();
         restartButton();
-        menuButton();
+        lvlSelectButton();
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
@@ -80,14 +80,14 @@ public class Pause extends Activity {
         });
     }
 
-    private void menuButton() {
-        Button button = (Button) findViewById(R.id.pauseMenu);
+    private void lvlSelectButton() {
+        Button button = (Button) findViewById(R.id.pauseLvlSelect);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 musicClass.mpPlayer.release();
                 goToMenu = true;
-                Intent activity = new Intent(Pause.this, MenuActivity.class);
+                Intent activity = new Intent(Pause.this, LvlSelectActivity.class);
                 MainActivity.getInstance().finish();
                 startActivity(activity);
                 finish();
