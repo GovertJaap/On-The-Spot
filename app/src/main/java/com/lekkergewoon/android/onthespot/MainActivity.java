@@ -182,11 +182,11 @@ public class MainActivity extends Activity {
                         }
                         else if (player == 1 || gameTimer > 3600) {
                             newX = (int) (rand.nextInt(getWidth() - Math.round(120 * density)) + (60 * density));
-                            newY = (int) (rand.nextInt(getHeight() - Math.round(440 * density)) + (380 * density));
+                            newY = (int) (rand.nextInt(Math.round(getHeight() / 2 - (120 * density))) + (getHeight() / 2 + (60 * density)));
                         }
                         else if (player == 2) {
                             newX = (int) (rand.nextInt(getWidth() - Math.round(120 * density)) + (60 * density));
-                            newY = (int) (rand.nextInt(getHeight() - Math.round(440 * density)) + (60 * density));
+                            newY = (int) (rand.nextInt(Math.round(getHeight() / 2 - (120 * density))) + (60 * density));
                         }
                     }
 
@@ -583,11 +583,11 @@ public class MainActivity extends Activity {
                         }
                         else if (player == 1 || gameTimer > 3600) {
                             newX = (int) (rand.nextInt(getWidth() - Math.round(120 * density)) + (60 * density));
-                            newY = (int) (rand.nextInt(getHeight() - Math.round(440 * density)) + (380 * density));
+                            newY = (int) (rand.nextInt(Math.round(getHeight() / 2 - (120 * density))) + (getHeight() / 2 + (60 * density)));
                         }
                         else if (player == 2) {
                             newX = (int) (rand.nextInt(getWidth() - Math.round(120 * density)) + (60 * density));
-                            newY = (int) (rand.nextInt(getHeight() - Math.round(440 * density)) + (60 * density));
+                            newY = (int) (rand.nextInt(Math.round(getHeight() / 2 - (120 * density))) + (60 * density));
                         }
                     }
 

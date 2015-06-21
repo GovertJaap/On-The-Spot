@@ -48,5 +48,4 @@
         style="@style/ButtonText"
         android:layout_below="@+id/resetUnlocks"
         android:layout_centerHorizontal="true" />
-
 </RelativeLayout>
